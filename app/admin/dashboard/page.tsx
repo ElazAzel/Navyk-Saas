@@ -294,7 +294,7 @@ export default function AdminDashboard() {
           <Button variant="outline">
             <BellAlertIcon className="h-4 w-4 mr-2" />
             Уведомления
-            <Badge className="ml-2 bg-red-500 text-white">{notifications.length}</Badge>
+            <Badge variant="destructive" className="ml-2">{notifications.length}</Badge>
           </Button>
           <Button>
             <PlusIcon className="h-4 w-4 mr-2" />
@@ -614,4 +614,4 @@ export default function AdminDashboard() {
       </Tabs>
     </div>
   );
-} 
+}
