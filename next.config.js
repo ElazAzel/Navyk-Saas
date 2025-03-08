@@ -1,9 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-  webServerConfig: {
-    hostname: '0.0.0.0',
-  },
+  reactStrictMode: true
 }
 
-module.exports = nextConfig 
+module.exports = nextConfig
