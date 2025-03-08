@@ -478,7 +478,7 @@ export default function AdminDashboard() {
                           user.role === "university" ? "secondary" :
                           user.role === "employer" ? "destructive" :
                           user.role === "mentor" ? "outline" :
-                          "success"
+                          "default"
                         }>
                           {user.role === "student" ? "Студент" :
                            user.role === "university" ? "Университет" :

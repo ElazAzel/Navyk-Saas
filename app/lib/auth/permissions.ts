@@ -360,20 +360,7 @@ export function usePermission(user: User) {
   };
 }
 
-// Компонент высшего порядка для защиты доступа к страницам
-export function withPermission(
-  Component: React.ComponentType<any>,
-  resource: Resource,
-  action: Action
-) {
-  return function PermissionCheck(props: any) {
-    const { user } = props;
-    
-    if (!hasPermission(user, resource, action)) {
-      // В реальном приложении здесь был бы редирект или компонент-заглушка
-      return <div>У вас нет доступа к этому ресурсу</div>;
-    }
-    
-    return <Component {...props} />;
-  };
+// Вспомогательная функция для проверки доступа
+export function withPermission(user: User, resource: Resource, action: Action): boolean {
+  return hasPermission(user, resource, action);
 } 

@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence, useDragControls, Reorder } from "framer-motion";
-import { Check, Clock, Star, Award, Plus, Trash2, DragHorizontal, Calendar, BookOpen, Lightbulb, CheckCircle, ChevronRight, ArrowRight, Info } from "lucide-react";
+import { Check, Clock, Star, Award, Plus, Trash2, GripHorizontal, Calendar, BookOpen, Lightbulb, CheckCircle, ChevronRight, ArrowRight, Info } from "lucide-react";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card";
 import { Badge } from "../ui/badge";
@@ -361,7 +361,7 @@ export default function DragDropRoadmap() {
               </>
             ) : (
               <>
-                <DragHorizontal className="h-4 w-4" />
+                <GripHorizontal className="h-4 w-4" />
                 Редактировать
               </>
             )}
@@ -440,7 +440,7 @@ export default function DragDropRoadmap() {
                   `}>
                     {editMode && (
                       <div className="absolute top-3 -left-6 p-1 bg-gray-100 dark:bg-gray-800 border rounded-full shadow-sm">
-                        <DragHorizontal className="h-4 w-4 text-gray-500" />
+                        <GripHorizontal className="h-4 w-4 text-gray-500" />
                       </div>
                     )}
                     
