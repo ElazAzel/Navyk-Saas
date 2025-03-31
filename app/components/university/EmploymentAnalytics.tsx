@@ -147,44 +147,45 @@ const EmploymentAnalytics: React.FC<EmploymentAnalyticsProps> = ({
                       <span className="text-sm text-muted-foreground">{field.count} ({field.percentage}%)</span>
                     </div>
                     <div className="w-full bg-gray-100 rounded-full h-2.5">
-                      <div 
+                      <div
                         className="bg-green-500 h-2.5 rounded-full"
-                        style={{ width: `${field.percentage}%` }}
+                        style={{ width: `${Math.max(field.percentage, 3)}%` }}
                       ></div>
                     </div>
                   </div>
                 ))}
               </div>
-              
+
               <div className="relative h-full flex items-center justify-center">
                 <div className="w-full max-w-[200px]">
                   <svg viewBox="0 0 100 100" className="w-full">
                     <circle cx="50" cy="50" r="45" className="fill-muted/20" />
-                    
+
                     {fieldsOfEmployment.map((field, index) => {
                       // Размер сегмента пропорционален проценту
-                      const radius = 25 + (index * 5);
                       const size = (field.percentage / 100) * 45;
-                      
+
                       return (
-                        <circle 
+                        <circle
                           key={field.field}
-                          cx="50" 
-                          cy="50" 
-                          r={size} 
+                          cx="50"
+                          cy="50"
+                          r={size}
                           className={`fill-green-${300 + (index * 100)}`}
+                          style={{ opacity: 0.8 }}
                         />
                       );
                     })}
-                    
-                    <text x="50" y="50" textAnchor="middle" dominantBaseline="middle" className="fill-foreground text-xs">
+
+                    <rect x="30" y="46" width="40" height="12" rx="2" className="fill-muted/80" />
+                    <text x="50" y="53" textAnchor="middle" dominantBaseline="middle" className="fill-foreground text-xs font-medium">
                       Направления
                     </text>
                   </svg>
                 </div>
               </div>
             </div>
-            
+
             <div className="mt-4 text-center text-sm text-muted-foreground">
               <p>Распределение по направлениям трудоустройства</p>
             </div>

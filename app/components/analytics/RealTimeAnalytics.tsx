@@ -87,7 +87,7 @@ export default function RealTimeAnalytics() {
         socket.disconnect();
       }
     };
-  }, []);
+  }, [socket]);
 
   // Варианты отображения (список/карточки)
   const [viewMode, setViewMode] = useState<'list' | 'cards'>('cards');
@@ -211,8 +211,9 @@ export default function RealTimeAnalytics() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="h-60 relative">
-            <div className="absolute inset-0 flex items-end justify-around">
+          <div className="h-80 relative">
+            {/* Контейнер для столбцов графика */}
+            <div className="absolute inset-x-0 top-0 bottom-8 flex items-end justify-around">
               {data.activityTimeline.map((item, i) => (
                 <motion.div
                   key={i}
@@ -223,9 +224,11 @@ export default function RealTimeAnalytics() {
                 />
               ))}
             </div>
+            
+            {/* Контейнер для подписей под столбцами */}
             <div className="absolute bottom-0 left-0 right-0 flex justify-around">
               {data.activityTimeline.map((item, i) => (
-                <div key={i} className="text-xs text-center text-gray-500 dark:text-gray-400 mt-2">
+                <div key={i} className="text-xs text-center text-gray-500 dark:text-gray-400 w-12">
                   {item.time}
                 </div>
               ))}

@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import Image from "next/image";
 
 interface JobListing {
   id: string;
@@ -286,7 +287,13 @@ const JobListings: React.FC<JobListingsProps> = ({
                       <div className="flex items-start space-x-4">
                         <div className="w-12 h-12 rounded-md bg-muted flex items-center justify-center overflow-hidden">
                           {job.companyLogo ? (
-                            <img src={job.companyLogo} alt={job.company} className="w-full h-full object-cover" />
+                            <Image 
+                              src={job.companyLogo} 
+                              alt={job.company} 
+                              width={48} 
+                              height={48} 
+                              className="w-full h-full object-cover" 
+                            />
                           ) : (
                             <BuildingOfficeIcon className="h-6 w-6 text-muted-foreground" />
                           )}

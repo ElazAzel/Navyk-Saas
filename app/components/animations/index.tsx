@@ -1,5 +1,5 @@
 export { AnimatedBackground } from './AnimatedBackground';
 export { AnimatedDemoChart } from './AnimatedDemoChart';
-export { AnimatedCounter, AnimatedStatCard, AnimatedStatistics } from './AnimatedCounter';
+export { AnimatedTextChanger } from './AnimatedTextChanger';
 export { AnimatedFeatureCard, AnimatedDemoCard, AnimatedTestimonialCard } from './AnimatedCards';
-export { AnimatedTextChanger } from './AnimatedTextChanger'; 
+export { AnimatedCounter, AnimatedStatCard, AnimatedStatistics } from './AnimatedCounter';

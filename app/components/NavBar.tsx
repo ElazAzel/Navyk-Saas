@@ -12,28 +12,6 @@ const NavBar = () => {
       <nav className="container px-4 sm:px-6 lg:px-8 flex justify-between items-center h-14">
         <div className="flex items-center gap-2">
           <Logo />
-          <span className="font-medium hidden sm:block">NAVYK</span>
-        </div>
-        
-        <div className="hidden md:flex gap-1">
-          <Link href="/students/profile" className="px-3 py-2 text-sm font-medium rounded-md hover:bg-accent hover:text-accent-foreground">
-            Студентам
-          </Link>
-          <Link href="/employers/dashboard" className="px-3 py-2 text-sm font-medium rounded-md hover:bg-accent hover:text-accent-foreground">
-            Компаниям
-          </Link>
-          <Link href="/universities/dashboard" className="px-3 py-2 text-sm font-medium rounded-md hover:bg-accent hover:text-accent-foreground">
-            Вузам
-          </Link>
-          <Link href="/students/events" className="px-3 py-2 text-sm font-medium rounded-md hover:bg-accent hover:text-accent-foreground">
-            Мероприятия
-          </Link>
-          <Link href="/students/courses" className="px-3 py-2 text-sm font-medium rounded-md hover:bg-accent hover:text-accent-foreground">
-            Курсы
-          </Link>
-          <Link href="/students/achievements" className="px-3 py-2 text-sm font-medium rounded-md hover:bg-accent hover:text-accent-foreground">
-            Достижения
-          </Link>
         </div>
         
         <div className="flex items-center gap-2">
@@ -48,7 +26,7 @@ const NavBar = () => {
               <Button size="sm">Регистрация</Button>
             </Link>
           </div>
-          
+
           <div className="md:hidden flex items-center">
             <button
               type="button"

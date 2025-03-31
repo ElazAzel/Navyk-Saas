@@ -118,12 +118,12 @@ const CoursesAnalytics: React.FC<CoursesAnalyticsProps> = ({
                         {category.count} курсов • {category.completionRate}% завершаемость
                       </div>
                     </div>
-                    <span className="text-xs md:text-sm text-muted-foreground">{category.percentage}%</span>
+                    <span className="text-xs md:text-sm text-gray-600 font-medium">{category.percentage}%</span>
                   </div>
-                  <div className="w-full bg-gray-100 rounded-full h-2.5">
-                    <div 
-                      className="bg-blue-500 h-2.5 rounded-full"
-                      style={{ width: `${category.percentage}%` }}
+                  <div className="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-2.5 overflow-hidden">
+                    <div
+                      className="bg-blue-500 h-2.5 rounded-full transition-all duration-500 ease-in-out"
+                      style={{ width: `${Math.max(5, category.percentage)}%` }}
                     ></div>
                   </div>
                 </div>
@@ -133,7 +133,7 @@ const CoursesAnalytics: React.FC<CoursesAnalyticsProps> = ({
                 <div className="text-xs md:text-sm text-muted-foreground">
                   <p>Распределение курсов по категориям</p>
                 </div>
-                <Badge variant="outline" className="bg-green-50 text-green-700">
+                <Badge variant="outline" className="bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400">
                   {courseCategories.sort((a, b) => b.completionRate - a.completionRate)[0].name}
                 </Badge>
               </div>
@@ -152,15 +152,15 @@ const CoursesAnalytics: React.FC<CoursesAnalyticsProps> = ({
                           {course.category}
                         </Badge>
                         {course.isPaid ? (
-                          <Badge variant="outline" className="bg-blue-50 text-blue-700 text-xs">
+                          <Badge variant="outline" className="bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 text-xs">
                             Платный
                           </Badge>
                         ) : (
-                          <Badge variant="outline" className="bg-green-50 text-green-700 text-xs">
+                          <Badge variant="outline" className="bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 text-xs">
                             Бесплатный
                           </Badge>
                         )}
-                        <Badge variant="outline" className="bg-purple-50 text-purple-700 text-xs">
+                        <Badge variant="outline" className="bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-400 text-xs">
                           {course.provider}
                         </Badge>
                       </div>
@@ -175,23 +175,27 @@ const CoursesAnalytics: React.FC<CoursesAnalyticsProps> = ({
                     <div>
                       <div className="flex justify-between text-xs">
                         <span>Завершаемость</span>
-                        <span>{course.completionRate}%</span>
+                        <span className="font-medium">{course.completionRate}%</span>
                       </div>
-                      <Progress 
-                        value={course.completionRate} 
-                        className="h-1.5 mt-1"
-                      />
+                      <div className="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-2 mt-1.5 overflow-hidden">
+                        <div
+                          className="bg-blue-500 h-2 rounded-full transition-all duration-500 ease-in-out"
+                          style={{ width: `${Math.max(5, course.completionRate)}%` }}
+                        />
+                      </div>
                     </div>
                     
                     <div>
                       <div className="flex justify-between text-xs">
                         <span>Удовлетворенность</span>
-                        <span>{course.satisfaction}/5</span>
+                        <span className="font-medium">{course.satisfaction}/5</span>
                       </div>
-                      <Progress 
-                        value={course.satisfaction * 20} 
-                        className="h-1.5 mt-1"
-                      />
+                      <div className="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-2 mt-1.5 overflow-hidden">
+                        <div
+                          className="bg-green-500 h-2 rounded-full transition-all duration-500 ease-in-out"
+                          style={{ width: `${Math.max(5, course.satisfaction * 20)}%` }}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -207,12 +211,12 @@ const CoursesAnalytics: React.FC<CoursesAnalyticsProps> = ({
                 <div className="space-y-1">
                   <div className="flex justify-between text-xs">
                     <span>Платные курсы</span>
-                    <span>{courseDistribution.paid} ({paidPercentage}%)</span>
+                    <span className="font-medium">{courseDistribution.paid} ({paidPercentage}%)</span>
                   </div>
-                  <div className="w-full bg-gray-100 rounded-full h-2.5">
-                    <div 
-                      className="bg-blue-500 h-2.5 rounded-full"
-                      style={{ width: `${paidPercentage}%` }}
+                  <div className="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-2.5 overflow-hidden">
+                    <div
+                      className="bg-blue-500 h-2.5 rounded-full transition-all duration-500 ease-in-out"
+                      style={{ width: `${Math.max(5, paidPercentage)}%` }}
                     ></div>
                   </div>
                 </div>
@@ -220,12 +224,12 @@ const CoursesAnalytics: React.FC<CoursesAnalyticsProps> = ({
                 <div className="space-y-1">
                   <div className="flex justify-between text-xs">
                     <span>Бесплатные курсы</span>
-                    <span>{courseDistribution.free} ({freePercentage}%)</span>
+                    <span className="font-medium">{courseDistribution.free} ({freePercentage}%)</span>
                   </div>
-                  <div className="w-full bg-gray-100 rounded-full h-2.5">
-                    <div 
-                      className="bg-green-500 h-2.5 rounded-full"
-                      style={{ width: `${freePercentage}%` }}
+                  <div className="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-2.5 overflow-hidden">
+                    <div
+                      className="bg-green-500 h-2.5 rounded-full transition-all duration-500 ease-in-out"
+                      style={{ width: `${Math.max(5, freePercentage)}%` }}
                     ></div>
                   </div>
                 </div>
@@ -233,11 +237,11 @@ const CoursesAnalytics: React.FC<CoursesAnalyticsProps> = ({
                 <div className="flex space-x-4 mt-4">
                   <div className="flex items-center">
                     <div className="w-3 h-3 rounded-full bg-blue-500 mr-2"></div>
-                    <span className="text-xs">Платные</span>
+                    <span className="text-xs font-medium">Платные</span>
                   </div>
                   <div className="flex items-center">
                     <div className="w-3 h-3 rounded-full bg-green-500 mr-2"></div>
-                    <span className="text-xs">Бесплатные</span>
+                    <span className="text-xs font-medium">Бесплатные</span>
                   </div>
                 </div>
               </div>
@@ -271,7 +275,7 @@ const CoursesAnalytics: React.FC<CoursesAnalyticsProps> = ({
                       transform="rotate(-90 50 50)"
                     />
                     
-                    <circle cx="50" cy="50" r="30" fill="white" />
+                    <circle cx="50" cy="50" r="30" fill="white" className="dark:fill-gray-900" />
                     
                     <text x="50" y="46" textAnchor="middle" className="fill-foreground text-xs font-bold">
                       {paidPercentage}% / {freePercentage}%
@@ -359,14 +363,14 @@ const CoursesAnalytics: React.FC<CoursesAnalyticsProps> = ({
                         {provider.courses} курсов • {provider.students} студентов
                       </div>
                     </div>
-                    <span className="text-xs md:text-sm text-muted-foreground">
+                    <span className="text-xs md:text-sm text-gray-600 dark:text-gray-400 font-medium">
                       {Math.round((provider.students / totalStudents) * 100)}%
                     </span>
                   </div>
-                  <div className="w-full bg-gray-100 rounded-full h-2.5">
-                    <div 
-                      className="bg-purple-500 h-2.5 rounded-full"
-                      style={{ width: `${(provider.students / totalStudents) * 100}%` }}
+                  <div className="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-2.5 overflow-hidden">
+                    <div
+                      className="bg-purple-500 h-2.5 rounded-full transition-all duration-500 ease-in-out"
+                      style={{ width: `${Math.max(5, (provider.students / totalStudents) * 100)}%` }}
                     ></div>
                   </div>
                 </div>

@@ -88,7 +88,7 @@ const BarChart = ({ data, title, subtitle }: BarChartProps) => {
   const maxValue = Math.max(...data.map((item) => item.value));
 
   return (
-    <Card className="p-6">
+    <Card className="p-6 col-span-4">
       <div className="flex justify-between items-center mb-6">
         <div>
           <h3 className="text-lg font-medium">{title}</h3>
@@ -101,13 +101,16 @@ const BarChart = ({ data, title, subtitle }: BarChartProps) => {
           <div key={index} className="space-y-2">
             <div className="flex justify-between items-center">
               <span className="text-sm font-medium">{item.label}</span>
-              <span className="text-sm text-gray-500">{item.value}</span>
+              <div className="flex items-center space-x-2">
+                <span className="text-sm text-gray-600 font-medium">{item.value}</span>
+                <span className="text-xs text-gray-500">({Math.round((item.value / maxValue) * 100)}%)</span>
+              </div>
             </div>
-            <div className="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-2">
+            <div className="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-2.5 overflow-hidden">
               <div
-                className="bg-primary rounded-full h-2"
+                className="bg-primary rounded-full h-2.5 transition-all duration-500 ease-in-out"
                 style={{
-                  width: `${(item.value / maxValue) * 100}%`,
+                  width: `${Math.max(5, (item.value / maxValue) * 100)}%`,
                 }}
               ></div>
             </div>
@@ -170,15 +173,15 @@ const PopularItemsTable = ({ items, title }: PopularItemsTableProps) => {
         <table className="w-full">
           <thead>
             <tr className="border-b">
-              <th className="text-left py-3 px-4 font-medium">Название</th>
-              <th className="text-left py-3 px-4 font-medium">Категория</th>
-              <th className="text-center py-3 px-4 font-medium">
+              <th className="text-left py-3 px-4 font-medium text-gray-700 dark:text-gray-300">Название</th>
+              <th className="text-left py-3 px-4 font-medium text-gray-700 dark:text-gray-300">Категория</th>
+              <th className="text-center py-3 px-4 font-medium text-gray-700 dark:text-gray-300">
                 {isVacancies ? "Просмотры" : isEvents ? "Регистрации" : "Записи"}
               </th>
-              <th className="text-center py-3 px-4 font-medium">
+              <th className="text-center py-3 px-4 font-medium text-gray-700 dark:text-gray-300">
                 {isVacancies ? "Отклики" : isEvents ? "Участники" : "Активные студенты"}
               </th>
-              <th className="text-right py-3 px-4 font-medium">
+              <th className="text-right py-3 px-4 font-medium text-gray-700 dark:text-gray-300">
                 {isVacancies ? "Интерес" : isEvents ? "Популярность" : "Завершаемость"}
               </th>
             </tr>
@@ -193,17 +196,17 @@ const PopularItemsTable = ({ items, title }: PopularItemsTableProps) => {
                 <td className="py-3 px-4 text-center">{item.views}</td>
                 <td className="py-3 px-4 text-center">{item.participants}</td>
                 <td className="py-3 px-4 text-right">
-                  <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5 mb-1">
-                    <div 
-                      className={`h-2.5 rounded-full ${
-                        isVacancies ? "bg-primary" : 
-                        isEvents ? "bg-green-500" : 
+                  <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5 mb-1.5 overflow-hidden">
+                    <div
+                      className={`h-2.5 rounded-full transition-all duration-500 ease-in-out ${
+                        isVacancies ? "bg-primary" :
+                        isEvents ? "bg-green-500" :
                         "bg-amber-500"
                       }`}
-                      style={{ width: `${Math.min(100, item.interest)}%` }}
+                      style={{ width: `${Math.max(5, Math.min(100, item.interest))}%` }}
                     ></div>
                   </div>
-                  <span className="text-xs text-gray-500">{item.interest}%</span>
+                  <span className="text-xs font-medium text-gray-600 dark:text-gray-400">{item.interest}%</span>
                 </td>
               </tr>
             ))}

@@ -89,6 +89,45 @@ export const SecurityProvider = ({ children }: { children: ReactNode }) => {
     }
   });
   
+  // Проверка и обновление токена
+  const verifyAndRefreshToken = async (token: string) => {
+    try {
+      // Секретный ключ (в реальном приложении должен храниться безопасно)
+      const secret = new TextEncoder().encode(
+        process.env.NEXT_PUBLIC_JWT_SECRET || 'default_secret_key_for_jwt_please_change_in_production'
+      );
+      
+      // Проверка токена
+      const { payload } = await jwtVerify(token, secret);
+      
+      if (payload.exp && typeof payload.exp === 'number') {
+        const expiryDate = new Date(payload.exp * 1000);
+        
+        // Если токен просрочен или истекает в течение 10 минут
+        const tenMinutes = 10 * 60 * 1000;
+        if (expiryDate.getTime() - Date.now() < tenMinutes) {
+          return refreshToken();
+        }
+        
+        // Токен действителен
+        setSecurityState(prev => ({
+          ...prev,
+          currentToken: token,
+          isAuthenticated: true,
+          userRoles: payload.roles as string[] || [],
+          sessionExpiry: expiryDate
+        }));
+        
+        return true;
+      }
+      
+      return false;
+    } catch (error) {
+      console.error('Ошибка проверки токена:', error);
+      return false;
+    }
+  };
+  
   // Генерация CSRF токена при загрузке
   useEffect(() => {
     // Генерация уникального CSRF токена
@@ -160,45 +199,6 @@ export const SecurityProvider = ({ children }: { children: ReactNode }) => {
     timeoutId = setInterval(checkInactivity, 60 * 1000);
     return () => clearInterval(timeoutId);
   }, [securityState.lastActivity, securityState.isAuthenticated]);
-  
-  // Проверка и обновление токена
-  const verifyAndRefreshToken = async (token: string) => {
-    try {
-      // Секретный ключ (в реальном приложении должен храниться безопасно)
-      const secret = new TextEncoder().encode(
-        process.env.NEXT_PUBLIC_JWT_SECRET || 'default_secret_key_for_jwt_please_change_in_production'
-      );
-      
-      // Проверка токена
-      const { payload } = await jwtVerify(token, secret);
-      
-      if (payload.exp && typeof payload.exp === 'number') {
-        const expiryDate = new Date(payload.exp * 1000);
-        
-        // Если токен просрочен или истекает в течение 10 минут
-        const tenMinutes = 10 * 60 * 1000;
-        if (expiryDate.getTime() - Date.now() < tenMinutes) {
-          return refreshToken();
-        }
-        
-        // Токен действителен
-        setSecurityState(prev => ({
-          ...prev,
-          currentToken: token,
-          isAuthenticated: true,
-          userRoles: payload.roles as string[] || [],
-          sessionExpiry: expiryDate
-        }));
-        
-        return true;
-      }
-      
-      return false;
-    } catch (error) {
-      console.error('Ошибка проверки токена:', error);
-      return false;
-    }
-  };
   
   // Аутентификация пользователя
   const login = async (username: string, password: string): Promise<boolean> => {
@@ -560,7 +560,7 @@ export const ProtectedRoute = ({
   children: ReactNode, 
   requiredPermissions?: string[] 
 }) => {
-  const { isAuthenticated, validatePermission } = useSecurity();
+  const { isAuthenticated, validatePermission, logout } = useSecurity();
   const router = useRouter();
   const pathname = usePathname();
   
@@ -583,7 +583,7 @@ export const ProtectedRoute = ({
         return;
       }
     }
-  }, [isAuthenticated, pathname, requiredPermissions, router, validatePermission]);
+  }, [isAuthenticated, pathname, requiredPermissions, router, validatePermission, logout]);
   
   // Если пользователь не аутентифицирован или не имеет требуемых разрешений, не рендерим содержимое
   if (!isAuthenticated) {

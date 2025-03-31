@@ -129,7 +129,7 @@ export function useRealTimeData<T>({
     return () => {
       disconnect();
     };
-  }, [url, authToken]);
+  }, [url, authToken, autoConnect, connect]);
   
   // Фиктивная реализация для разработки, если нет реального сервера
   useEffect(() => {
