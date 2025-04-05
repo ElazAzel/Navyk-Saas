@@ -2,102 +2,148 @@
 
 import React from "react";
 import Link from "next/link";
-import { 
-  UserIcon, 
-  AcademicCapIcon, 
-  CalendarIcon, 
-  TrophyIcon,
-  DocumentTextIcon 
-} from "@heroicons/react/24/outline";
+import Logo from "@/components/Logo";
+import { Instagram, Twitter, Github, Linkedin, ArrowUpRight, Mail } from "lucide-react";
+import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
+import { useInView } from "@/lib/hooks";
 
 export default function Footer() {
+  const [ref, inView] = useInView({ 
+    triggerOnce: true,
+    threshold: 0.1
+  });
+
+  // Анимация для Footer
+  const containerVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.1
+      }
+    }
+  };
+
+  const childVariants = {
+    hidden: { 
+      opacity: 0,
+      y: 20
+    },
+    visible: { 
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5
+      }
+    }
+  };
+
   return (
-    <footer className="py-6 bg-muted">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-          <div>
-            <h3 className="font-bold text-lg mb-4">NAVYK</h3>
-            <p className="text-sm text-muted-foreground">
-              Платформа для развития навыков и карьеры, соединяющая студентов, работодателей и университеты.
-            </p>
+    <motion.footer
+      ref={ref as React.RefObject<HTMLDivElement>}
+      className="border-t bg-background py-12 md:py-16"
+      variants={containerVariants}
+      initial="hidden"
+      animate={inView ? "visible" : "hidden"}
+    >
+      <div className="container grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+        <motion.div variants={childVariants} className="space-y-4">
+          <Logo size="large" />
+          <p className="text-muted-foreground max-w-xs">
+            Платформа для развития навыков и построения карьеры для студентов, компаний и университетов
+          </p>
+          <div className="flex space-x-3">
+            <FooterSocialLink href="https://twitter.com" icon={<Twitter />} label="Twitter" />
+            <FooterSocialLink href="https://instagram.com" icon={<Instagram />} label="Instagram" />
+            <FooterSocialLink href="https://github.com" icon={<Github />} label="GitHub" />
+            <FooterSocialLink href="https://linkedin.com" icon={<Linkedin />} label="LinkedIn" />
           </div>
-          
-          <div>
-            <h3 className="font-bold text-lg mb-4">Для студентов</h3>
-            <div className="grid grid-cols-2 gap-x-2 gap-y-3">
-              <Link 
-                href="/students/profile" 
-                className="flex items-center gap-2 text-sm hover:text-primary transition-colors"
-              >
-                <UserIcon className="h-4 w-4" />
-                <span>Профиль</span>
-              </Link>
-              <Link 
-                href="/students/roadmap" 
-                className="flex items-center gap-2 text-sm hover:text-primary transition-colors"
-              >
-                <DocumentTextIcon className="h-4 w-4" />
-                <span>Карьерный план</span>
-              </Link>
-              <Link 
-                href="/students/courses" 
-                className="flex items-center gap-2 text-sm hover:text-primary transition-colors"
-              >
-                <AcademicCapIcon className="h-4 w-4" />
-                <span>Курсы</span>
-              </Link>
-              <Link 
-                href="/students/events" 
-                className="flex items-center gap-2 text-sm hover:text-primary transition-colors"
-              >
-                <CalendarIcon className="h-4 w-4" />
-                <span>Мероприятия</span>
-              </Link>
-              <Link 
-                href="/students/achievements" 
-                className="flex items-center gap-2 text-sm hover:text-primary transition-colors"
-              >
-                <TrophyIcon className="h-4 w-4" />
-                <span>Достижения</span>
-              </Link>
-              <Link 
-                href="/students/jobs" 
-                className="flex items-center gap-2 text-sm hover:text-primary transition-colors"
-              >
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                <span>Вакансии</span>
-              </Link>
-            </div>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div>
-              <h3 className="font-bold text-lg mb-4">Для партнеров</h3>
-              <ul className="space-y-2 text-sm">
-                <li><Link href="/employers/dashboard" className="hover:underline">Работодателям</Link></li>
-                <li><Link href="/universities/dashboard" className="hover:underline">Университетам</Link></li>
-                <li><Link href="/mentors/dashboard" className="hover:underline">Менторам</Link></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h3 className="font-bold text-lg mb-4">Ресурсы</h3>
-              <ul className="space-y-2 text-sm">
-                <li><Link href="/policy" className="hover:underline">Политика конфиденциальности</Link></li>
-                <li><Link href="/terms" className="hover:underline">Условия использования</Link></li>
-                <li><Link href="/faq" className="hover:underline">Часто задаваемые вопросы</Link></li>
-                <li><Link href="/contact" className="hover:underline">Связаться с нами</Link></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        
-        <div className="border-t border-border pt-6 text-center text-muted-foreground text-sm">
-          © {new Date().getFullYear()} NAVYK. Все права защищены.
-        </div>
+        </motion.div>
+
+        <motion.div variants={childVariants} className="space-y-4">
+          <h3 className="text-lg font-semibold">Платформа</h3>
+          <ul className="space-y-2">
+            <FooterLink href="/features">Возможности</FooterLink>
+            <FooterLink href="/pricing">Тарифы</FooterLink>
+            <FooterLink href="/testimonials">Отзывы</FooterLink>
+            <FooterLink href="/faq">Частые вопросы</FooterLink>
+          </ul>
+        </motion.div>
+
+        <motion.div variants={childVariants} className="space-y-4">
+          <h3 className="text-lg font-semibold">Сообщество</h3>
+          <ul className="space-y-2">
+            <FooterLink href="/blog">Блог</FooterLink>
+            <FooterLink href="/events">Мероприятия</FooterLink>
+            <FooterLink href="/partnerships">Партнерство</FooterLink>
+            <FooterLink href="/careers">Вакансии</FooterLink>
+          </ul>
+        </motion.div>
+
+        <motion.div variants={childVariants} className="space-y-4">
+          <h3 className="text-lg font-semibold">Связаться с нами</h3>
+          <p className="text-muted-foreground">
+            Есть вопросы? Свяжитесь с нашей командой поддержки
+          </p>
+          <Link 
+            href="mailto:info@navyk.com" 
+            className="inline-flex items-center text-primary hover:underline"
+          >
+            <Mail className="h-4 w-4 mr-2" />
+            info@navyk.com
+          </Link>
+        </motion.div>
       </div>
-    </footer>
+
+      <motion.div 
+        variants={childVariants}
+        className="container mt-12 pt-6 border-t flex flex-col sm:flex-row items-center justify-between"
+      >
+        <p className="text-sm text-muted-foreground mb-4 sm:mb-0">
+          &copy; {new Date().getFullYear()} NAVYK. Все права защищены.
+        </p>
+        <div className="flex space-x-6 text-sm">
+          <Link href="/terms" className="text-muted-foreground hover:text-foreground transition-colors">
+            Условия использования
+          </Link>
+          <Link href="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">
+            Политика конфиденциальности
+          </Link>
+        </div>
+      </motion.div>
+    </motion.footer>
+  );
+}
+
+function FooterLink({ href, children }: { href: string, children: React.ReactNode }) {
+  return (
+    <li>
+      <Link 
+        href={href} 
+        className="text-muted-foreground hover:text-foreground transition-colors flex items-center group"
+      >
+        {children}
+        <ArrowUpRight className="h-3.5 w-3.5 ml-1 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+      </Link>
+    </li>
+  );
+}
+
+function FooterSocialLink({ href, icon, label }: { href: string, icon: React.ReactNode, label: string }) {
+  return (
+    <Link 
+      href={href}
+      aria-label={label}
+      className={cn(
+        "h-8 w-8 rounded-full flex items-center justify-center",
+        "bg-muted hover:bg-primary hover:text-primary-foreground transition-colors"
+      )}
+    >
+      <span className="sr-only">{label}</span>
+      {React.cloneElement(icon as React.ReactElement, { className: "h-4 w-4" })}
+    </Link>
   );
 } 

@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useEffect } from 'react';
+import React from 'react';
+import { useTheme } from 'next-themes';
 import { Button } from '@/components/ui/button';
 import { SunIcon, MoonIcon } from '@heroicons/react/24/outline';
 
@@ -9,40 +10,10 @@ interface ToggleButtonProps {
 }
 
 const ToggleButton: React.FC<ToggleButtonProps> = ({ className = '' }) => {
-  const [theme, setTheme] = React.useState<string>('light');
-
-  // Использование useEffect для проверки предпочтений пользователя и текущей темы системы
-  useEffect(() => {
-    // Проверяем, есть ли сохраненная тема в localStorage
-    const savedTheme = localStorage.getItem('theme');
-    // Проверяем, предпочитает ли пользователь темную тему на уровне ОС
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
-    // Устанавливаем тему на основе сохраненных настроек или системных предпочтений
-    const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
-    setTheme(initialTheme);
-    
-    // Применяем тему к документу
-    if (initialTheme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, []);
+  const { theme, setTheme } = useTheme();
 
   const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-    
-    // Сохраняем выбор пользователя
-    localStorage.setItem('theme', newTheme);
-    
-    // Применяем или удаляем класс dark для переключения темы
-    if (newTheme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
+    setTheme(theme === 'light' ? 'dark' : 'light');
   };
 
   return (
