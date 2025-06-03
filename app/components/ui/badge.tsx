@@ -73,7 +73,7 @@ function Badge({
 }: BadgeProps) {
   // Если нужна анимация, используем motion.div
   const BadgeComponent = animated ? motion.div : "div";
-  
+
   // Анимационные пропсы
   const animationProps = animated
     ? {
@@ -83,16 +83,22 @@ function Badge({
         whileHover: { scale: 1.05 }
       }
     : {};
-  
+
   // Классы для разных типов анимаций
   const animationClass = cn(
     pulse && "animate-pulse",
     bounce && "animate-bounce",
     glow && "shadow-glow"
   );
-    
+
+  // Удаляем onDrag, onDragStart, onDragEnd из props для motion.div и div
+  const { onDrag, onDragStart, onDragEnd, ...restProps } = props;
+
+  // Явно приводим тип BadgeComponent для TS
+  const Comp = BadgeComponent as React.ElementType;
+
   return (
-    <BadgeComponent
+    <Comp
       className={cn(
         badgeVariants({ variant, size, animated }),
         isNew && "relative after:content-[''] after:absolute after:-right-1 after:-top-1 after:h-2 after:w-2 after:rounded-full after:bg-red-500 after:ring-2 after:ring-white dark:after:ring-gray-950",
@@ -100,7 +106,7 @@ function Badge({
         className
       )}
       {...animationProps}
-      {...props}
+      {...restProps}
     >
       {count !== undefined ? (
         <>
@@ -114,7 +120,7 @@ function Badge({
       ) : (
         props.children
       )}
-    </BadgeComponent>
+    </Comp>
   )
 }
 

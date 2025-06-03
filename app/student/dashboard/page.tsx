@@ -529,55 +529,59 @@ export default function StudentDashboard() {
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div className="space-y-4">
-                      {roadmapCourses.map((course, index) => (
-                        <div key={index} className="group cursor-pointer">
-                          <div className="flex items-center justify-between mb-1">
-                            <div className="flex items-center">
+                      {roadmapCourses.map((course, index) => {
+                        const progress = typeof course.progress === "number" ? course.progress : 0;
+                        return (
+                          <div key={index} className="group cursor-pointer">
+                            <div className="flex items-center justify-between mb-1">
+                              <div className="flex items-center">
+                                {course.completed ? (
+                                  <div className="mr-2 h-5 w-5 rounded-full bg-primary/20 flex items-center justify-center">
+                                    <span className="text-primary text-xs">✓</span>
+                                  </div>
+                                ) : (
+                                  <div className={`mr-2 h-5 w-5 rounded-full ${progress > 0 ? 'bg-amber-500/20' : 'bg-muted'} flex items-center justify-center`}>
+                                    <span className="text-xs">{index + 1}</span>
+                                  </div>
+                                )}
+                                <span className="font-medium group-hover:text-primary transition-colors">{course.title}</span>
+                              </div>
                               {course.completed ? (
-                                <div className="mr-2 h-5 w-5 rounded-full bg-primary/20 flex items-center justify-center">
-                                  <span className="text-primary text-xs">✓</span>
-                                </div>
+                                <span className="text-sm font-medium text-primary">
+                                  {course.score}%
+                                </span>
                               ) : (
-                                <div className={`mr-2 h-5 w-5 rounded-full ${course.progress > 0 ? 'bg-amber-500/20' : 'bg-muted'} flex items-center justify-center`}>
-                                  <span className="text-xs">{index + 1}</span>
-                                </div>
-                              )}
-                              <span className="font-medium group-hover:text-primary transition-colors">{course.title}</span>
-                            </div>
-                            {course.completed ? (
-                              <span className="text-sm font-medium text-primary">
-                                {course.score}%
-                              </span>
-                            ) : (
-                              course.progress > 0 && (
-                                <span className="text-sm text-muted-foreground">
-                                  {course.progress}%
-                                </span>
-                              )
-                            )}
-                          </div>
-                          <div className="pl-7">
-                            <div className="flex justify-between items-center text-xs text-muted-foreground">
-                              <span className="flex items-center">
-                                <Clock className="h-3 w-3 mr-1" />
-                                {course.startDate} - {course.endDate}
-                              </span>
-                              {course.completed && (
-                                <span className="flex items-center text-green-600 dark:text-green-500">
-                                  <span>Завершен</span>
-                                </span>
+                                progress > 0 && (
+                                  <span className="text-sm text-muted-foreground">
+                                    {progress}%
+                                  </span>
+                                )
                               )}
                             </div>
-                            {!course.completed && course.progress > 0 && (
-                              <AnimatedProgressBar 
-                                value={course.progress} 
-                                color="amber-500" 
-                                className="mt-2"
-                              />
-                            )}
+                            <div className="pl-7">
+                              <div className="flex justify-between items-center text-xs text-muted-foreground">
+                                <span className="flex items-center">
+                                  <Clock className="h-3 w-3 mr-1" />
+                                  {course.startDate} - {course.endDate}
+                                </span>
+                                {course.completed && (
+                                  <span className="flex items-center text-green-600 dark:text-green-500">
+                                    <span>Завершен</span>
+                                  </span>
+                                )}
+                              </div>
+                              {!course.completed && progress > 0 && (
+                                <AnimatedProgressBar
+                                  value={progress}
+                                  max={100}
+                                  color="primary"
+                                  className="mt-1"
+                                />
+                              )}
+                            </div>
                           </div>
-                        </div>
-                      ))}
+                        );
+                      })}
                     </div>
                     
                     <div className="mt-4 pt-3 border-t">
@@ -1260,4 +1264,4 @@ export default function StudentDashboard() {
       </div>
     </RoleLayout>
   );
-} 
+}

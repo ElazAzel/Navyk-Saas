@@ -106,10 +106,10 @@ export default function RoleLayout({
                   className="flex items-center space-x-4"
                 >
                   <h1 className="text-2xl font-semibold tracking-tight">
-                    {pageTitle || 
-                      pathname.split("/").pop()?.charAt(0).toUpperCase() + 
-                      pathname.split("/").pop()?.slice(1) || 
-                      "Дашборд"}
+                    {pageTitle || (() => {
+                      const last = pathname.split("/").pop() ?? "";
+                      return last ? last.charAt(0).toUpperCase() + last.slice(1) : "Дашборд";
+                    })()}
                   </h1>
                 </motion.div>
                 
@@ -174,4 +174,4 @@ export default function RoleLayout({
       )}
     </div>
   );
-} 
+}
