@@ -34,3 +34,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+# local development artifacts
+.cursorrules
+.cursor/
+temp.txt
+tatus
+tatus -uall

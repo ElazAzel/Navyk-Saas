@@ -1,5 +1,6 @@
 {
-  "name": "desgy_project",
+  "name": "navyk-saas",
+  "description": "SaaS platform for student career development",
   "version": "2.0.0",
   "private": true,
   "scripts": {
