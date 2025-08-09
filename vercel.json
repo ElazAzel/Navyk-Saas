@@ -1,7 +1,6 @@
 {
   "version": 2,
   "functions": {
-    "app/**/route.ts": { "runtime": "nodejs20.x" },
     "app/sitemap.ts": { "runtime": "nodejs20.x" },
     "middleware.ts": { "runtime": "edge" }
   }
