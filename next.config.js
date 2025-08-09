@@ -5,8 +5,8 @@ const nextConfig = {
   swcMinify: true,
   images: {
     domains: [],
-    remotePatterns: []
-  }
+    remotePatterns: [],
+  },
 }
 
 module.exports = nextConfig
