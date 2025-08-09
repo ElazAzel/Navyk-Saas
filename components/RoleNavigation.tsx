@@ -34,37 +34,37 @@ interface NavItem {
 const studentNavItems: NavItem[] = [
   {
     title: "Дашборд",
-    href: "/student/dashboard",
+    href: "/students/dashboard",
     icon: <LayoutDashboard className="h-5 w-5" />
   },
   {
     title: "Профиль",
-    href: "/student/profile",
+    href: "/students/profile",
     icon: <User className="h-5 w-5" />
   },
   {
     title: "Карьерный план",
-    href: "/student/roadmap",
+    href: "/students/roadmap",
     icon: <FileText className="h-5 w-5" />
   },
   {
     title: "Курсы",
-    href: "/student/courses",
+    href: "/students/courses",
     icon: <BookOpen className="h-5 w-5" />
   },
   {
     title: "Мероприятия",
-    href: "/student/events",
+    href: "/students/events",
     icon: <Calendar className="h-5 w-5" />
   },
   {
     title: "Вакансии",
-    href: "/student/jobs",
+    href: "/students/jobs",
     icon: <Briefcase className="h-5 w-5" />
   },
   {
     title: "Достижения",
-    href: "/student/achievements",
+    href: "/students/achievements",
     icon: <Award className="h-5 w-5" />
   }
 ];
@@ -72,32 +72,32 @@ const studentNavItems: NavItem[] = [
 const employerNavItems: NavItem[] = [
   {
     title: "Дашборд",
-    href: "/employer/dashboard",
+    href: "/employers/dashboard",
     icon: <LayoutDashboard className="h-5 w-5" />
   },
   {
     title: "Профиль компании",
-    href: "/employer/profile",
+    href: "/employers/profile",
     icon: <Building className="h-5 w-5" />
   },
   {
     title: "Управление вакансиями",
-    href: "/employer/jobs",
+    href: "/employers/jobs",
     icon: <Briefcase className="h-5 w-5" />
   },
   {
     title: "Статистика и аналитика",
-    href: "/employer/analytics",
+    href: "/employers/analytics",
     icon: <BarChart3 className="h-5 w-5" />
   },
   {
     title: "Кандидаты",
-    href: "/employer/candidates",
+    href: "/employers/candidates",
     icon: <Users className="h-5 w-5" />
   },
   {
     title: "Мероприятия",
-    href: "/employer/events",
+    href: "/employers/events",
     icon: <Calendar className="h-5 w-5" />
   }
 ];
@@ -105,32 +105,32 @@ const employerNavItems: NavItem[] = [
 const universityNavItems: NavItem[] = [
   {
     title: "Дашборд",
-    href: "/university/dashboard",
+    href: "/universities/dashboard",
     icon: <LayoutDashboard className="h-5 w-5" />
   },
   {
     title: "Профиль университета",
-    href: "/university/profile",
+    href: "/universities/profile",
     icon: <School className="h-5 w-5" />
   },
   {
     title: "Студенты",
-    href: "/university/students",
+    href: "/universities/students",
     icon: <Users className="h-5 w-5" />
   },
   {
     title: "Аналитика",
-    href: "/university/analytics",
+    href: "/universities/analytics",
     icon: <BarChart3 className="h-5 w-5" />
   },
   {
     title: "Мероприятия университета",
-    href: "/university/events",
+    href: "/universities/events",
     icon: <Calendar className="h-5 w-5" />
   },
   {
     title: "Партнерские программы",
-    href: "/university/partnerships",
+    href: "/universities/partnerships",
     icon: <Building className="h-5 w-5" />
   }
 ];
@@ -138,32 +138,32 @@ const universityNavItems: NavItem[] = [
 const mentorNavItems: NavItem[] = [
   {
     title: "Дашборд",
-    href: "/mentor/dashboard",
+    href: "/mentors/dashboard",
     icon: <LayoutDashboard className="h-5 w-5" />
   },
   {
     title: "Профиль ментора",
-    href: "/mentor/profile",
+    href: "/mentors/profile",
     icon: <User className="h-5 w-5" />
   },
   {
     title: "Мои студенты",
-    href: "/mentor/students",
+    href: "/mentors/students",
     icon: <Users className="h-5 w-5" />
   },
   {
     title: "Календарь встреч",
-    href: "/mentor/meetings",
+    href: "/mentors/meetings",
     icon: <Calendar className="h-5 w-5" />
   },
   {
     title: "Материалы и ресурсы",
-    href: "/mentor/resources",
+    href: "/mentors/resources",
     icon: <FileText className="h-5 w-5" />
   },
   {
     title: "Сообщения",
-    href: "/mentor/messages",
+    href: "/mentors/messages",
     icon: <MessageSquare className="h-5 w-5" />
   }
 ];

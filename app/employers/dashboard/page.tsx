@@ -248,7 +248,7 @@ export default function EmployerDashboard() {
                     
                     <div className="mt-4 pt-3 border-t">
                       <Link
-                        href="/employer/jobs"
+                        href="/employers/jobs"
                         className="inline-flex items-center text-sm text-primary"
                       >
                         Все вакансии
@@ -301,7 +301,7 @@ export default function EmployerDashboard() {
                     <div className="mt-4 pt-3 border-t">
                       <div className="flex justify-between items-center">
                         <Link
-                          href="/employer/interviews"
+                          href="/employers/interviews"
                           className="inline-flex items-center text-sm text-primary"
                         >
                           Все собеседования

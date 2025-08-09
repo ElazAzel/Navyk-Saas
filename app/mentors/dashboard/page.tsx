@@ -413,7 +413,7 @@ export default function MentorDashboard() {
                     
                     <div className="mt-4 pt-3 border-t">
                       <Link
-                        href="/mentor/assignments"
+                        href="/mentors/assignments"
                         className="inline-flex items-center text-sm text-primary"
                       >
                         Все задания
@@ -469,7 +469,7 @@ export default function MentorDashboard() {
                     <div className="mt-4 pt-3 border-t">
                       <div className="flex justify-between items-center">
                         <Link
-                          href="/mentor/schedule"
+                          href="/mentors/schedule"
                           className="inline-flex items-center text-sm text-primary"
                         >
                           Расписание
@@ -520,7 +520,7 @@ export default function MentorDashboard() {
                         </div>
                       ))}
                       <div className="pt-2 border-t">
-                        <Link href="/mentor/students">
+                        <Link href="/mentors/students">
                           <Button size="sm" variant="ghost" className="w-full justify-center">
                             Все студенты
                           </Button>
@@ -567,7 +567,7 @@ export default function MentorDashboard() {
                         </div>
                       ))}
                       <div className="pt-2 border-t">
-                        <Link href="/mentor/feedback">
+                        <Link href="/mentors/feedback">
                           <Button size="sm" variant="ghost" className="w-full justify-center">
                             Все отзывы
                           </Button>
@@ -621,7 +621,7 @@ export default function MentorDashboard() {
                         </div>
                       </div>
                       <div className="pt-2 border-t">
-                        <Link href="/mentor/statistics">
+                        <Link href="/mentors/statistics">
                           <Button size="sm" variant="ghost" className="w-full justify-center">
                             Подробная статистика
                           </Button>

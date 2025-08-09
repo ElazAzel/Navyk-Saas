@@ -27,7 +27,7 @@ export default function BuildPage() {
       icon: <UserIcon className="h-5 w-5" />,
       links: [
         {
-          url: "/student/profile",
+          url: "/students/profile",
           title: "Профиль студента",
           description: "Личный профиль и карьерный план студента"
         }
@@ -40,7 +40,7 @@ export default function BuildPage() {
       icon: <BuildingOfficeIcon className="h-5 w-5" />,
       links: [
         {
-          url: "/employer/dashboard",
+          url: "/employers/dashboard",
           title: "Дашборд работодателя",
           description: "Аналитика и управление вакансиями"
         }
@@ -53,7 +53,7 @@ export default function BuildPage() {
       icon: <AcademicCapIcon className="h-5 w-5" />,
       links: [
         {
-          url: "/university/dashboard",
+          url: "/universities/dashboard",
           title: "Дашборд университета",
           description: "Управление образовательными программами"
         }
@@ -66,7 +66,7 @@ export default function BuildPage() {
       icon: <UserGroupIcon className="h-5 w-5" />,
       links: [
         {
-          url: "/mentor/dashboard",
+          url: "/mentors/dashboard",
           title: "Дашборд ментора",
           description: "Управление сессиями и отзывами студентов"
         }
@@ -87,6 +87,14 @@ export default function BuildPage() {
       color: "bg-green-500"
     }
   ];
+
+  const mainLinks: Record<string, string> = {
+    student: "/students/profile",
+    employer: "/employers/dashboard",
+    university: "/universities/dashboard",
+    mentor: "/mentors/dashboard",
+    admin: "/admin/dashboard",
+  };
 
   return (
     <div className="container py-12">
@@ -134,7 +142,7 @@ export default function BuildPage() {
             <CardFooter className="flex justify-between border-t pt-6">
               <Badge variant="outline">{rolePage.links.length} {rolePage.links.length === 1 ? 'страница' : 'страницы'}</Badge>
               <Button variant="ghost" size="sm" asChild>
-                <Link href={`/${rolePage.role === "student" ? "students/profile" : rolePage.role + "s/dashboard"}`}>
+                <Link href={mainLinks[rolePage.role as keyof typeof mainLinks]}>
                   Перейти к основной странице
                 </Link>
               </Button>

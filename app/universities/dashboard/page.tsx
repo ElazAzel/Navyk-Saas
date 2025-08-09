@@ -246,7 +246,7 @@ export default function UniversityDashboard() {
                     
                     <div className="mt-4 pt-3 border-t">
                       <Link
-                        href="/university/majors"
+                        href="/universities/majors"
                         className="inline-flex items-center text-sm text-primary"
                       >
                         Все направления
@@ -301,7 +301,7 @@ export default function UniversityDashboard() {
                     <div className="mt-4 pt-3 border-t">
                       <div className="flex justify-between items-center">
                         <Link
-                          href="/university/events"
+                          href="/universities/events"
                           className="inline-flex items-center text-sm text-primary"
                         >
                           Все мероприятия
@@ -384,7 +384,7 @@ export default function UniversityDashboard() {
                         <FileBarChart className="h-3.5 w-3.5 mr-1.5" />
                         Экспорт данных
                       </Button>
-                      <Link href="/university/students">
+                      <Link href="/universities/students">
                         <Button size="sm">
                           Все студенты
                         </Button>
