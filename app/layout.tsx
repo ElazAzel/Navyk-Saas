@@ -2,6 +2,8 @@ import './globals.css';
 import { ReactNode } from 'react';
 import Providers from './providers';
 import { AuthProvider } from '@/context/auth-context';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 export const metadata = {
   title: 'NAVYK - Платформа для развития навыков и карьеры',
@@ -25,6 +27,8 @@ export default function RootLayout({
             {children}
           </AuthProvider>
         </Providers>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

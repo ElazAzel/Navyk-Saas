@@ -22,6 +22,11 @@ npm i -g vercel
 vercel deploy
 ```
 
+Сбор статистики посещений и производительности осуществляется через
+[@vercel/analytics](https://vercel.com/docs/analytics) и
+[@vercel/speed-insights](https://vercel.com/docs/speed-insights),
+которые подключены в корневом макете приложения.
+
 ## AI возможности
 В прототип встроена интеграция с OpenAI для генерации контента:
 
