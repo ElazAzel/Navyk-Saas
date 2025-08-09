@@ -11,7 +11,7 @@ import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { AdjustmentsHorizontalIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import RecommendationCard from "@/components/RecommendationCard";
-import PageLayout from "@/app/components/PageLayout";
+import PageLayout from "@/components/PageLayout";
 
 export default function StudentRecommendations() {
   // Данные рекомендаций

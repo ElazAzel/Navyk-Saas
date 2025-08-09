@@ -1,5 +1,7 @@
 import { MetadataRoute } from 'next'
 
+export const runtime = 'nodejs'
+
 /**
  * Генерирует карту сайта для всех страниц платформы
  * 

@@ -3,7 +3,7 @@
 import React, { ReactNode, useState, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "@/context/auth-context";
-import NavBar from "@/app/components/NavBar";
+import NavBar from "@/components/NavBar";
 import SideNav from "./SideNav";
 import { cn } from "@/lib/utils";
 import { AnimatedBackground } from "@/app/components/animations";
@@ -41,11 +41,17 @@ export default function RoleLayout({
     }
 
     if (user && user.role) {
-      const currentRole = pathname.split("/")[1]; // например, "student" из "/student/profile"
+      const segment = pathname.split("/")[1];
+      const currentRole = segment.endsWith("s") ? segment.slice(0, -1) : segment;
       if (currentRole !== user.role) {
-        // Если пользователь пытается получить доступ к ресурсам другой роли,
-        // перенаправляем его на главную страницу его роли
-        router.push(`/${user.role}/dashboard`);
+        const basePath =
+          user.role === "student"
+            ? "students"
+            : user.role === "admin"
+            ? "admin"
+            : `${user.role}s`;
+        const homePath = user.role === "student" ? "profile" : "dashboard";
+        router.push(`/${basePath}/${homePath}`);
       }
     }
   }, [user, isLoading, pathname, router]);

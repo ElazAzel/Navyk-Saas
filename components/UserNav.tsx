@@ -40,6 +40,14 @@ const roleLabels: Record<NonNullable<UserRole>, string> = {
   "admin": "Администратор",
 };
 
+const rolePaths: Record<NonNullable<UserRole>, string> = {
+  student: "students",
+  employer: "employers",
+  university: "universities",
+  mentor: "mentors",
+  admin: "admin",
+};
+
 export default function UserNav() {
   const { user, logout, switchRole } = useAuth();
 
@@ -60,7 +68,8 @@ export default function UserNav() {
     );
   }
 
-  const userRole = user.role || "student";
+  const userRole = (user.role || "student") as NonNullable<UserRole>;
+  const basePath = rolePaths[userRole];
   const firstLetter = user.name ? user.name[0] : "U";
 
   return (
@@ -97,13 +106,13 @@ export default function UserNav() {
         <DropdownMenuSeparator />
         
         <DropdownMenuLabel>Действия</DropdownMenuLabel>
-        <Link href={`/${userRole}/profile`}>
+        <Link href={`/${basePath}/profile`}>
           <DropdownMenuItem className="cursor-pointer">
             <UserCircle className="w-4 h-4 mr-2" />
             <span>Мой профиль</span>
           </DropdownMenuItem>
         </Link>
-        <Link href={`/${userRole}/settings`}>
+        <Link href={`/${basePath}/settings`}>
           <DropdownMenuItem className="cursor-pointer">
             <Settings className="w-4 h-4 mr-2" />
             <span>Настройки</span>

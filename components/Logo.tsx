@@ -1,109 +1,82 @@
 "use client";
 
-import React from "react";
-import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 interface LogoProps {
   className?: string;
   size?: "small" | "medium" | "large";
-  animated?: boolean;
 }
 
-const Logo: React.FC<LogoProps> = ({ 
-  className, 
-  size = "medium",
-  animated = true 
-}) => {
-  const sizeClass = {
-    small: "text-lg",
-    medium: "text-xl",
-    large: "text-3xl"
-  };
-
-  // Варианты анимации для логотипа
-  const logoAnimation = {
-    initial: { 
-      scale: 0.9,
-      opacity: 0 
-    },
-    animate: { 
-      scale: 1,
-      opacity: 1,
-      transition: { 
-        duration: 0.5,
-        ease: "easeOut"
-      }
-    },
-    hover: { 
-      scale: 1.05,
-      transition: { 
-        duration: 0.2
-      }
-    }
-  };
-
-  // Варианты анимации для точки
-  const dotAnimation = {
-    initial: { 
-      scale: 0,
-      opacity: 0 
-    },
-    animate: { 
-      scale: 1,
-      opacity: 1,
-      transition: { 
-        delay: 0.3,
-        duration: 0.4,
-        type: "spring",
-        stiffness: 300
-      }
-    },
-    hover: { 
-      scale: 1.5,
-      rotate: 360,
-      transition: { 
-        duration: 0.3
-      }
-    }
-  };
-
-  // Определяем компонент в зависимости от того, нужна ли анимация
-  const LogoComponent = animated ? motion.div : "div";
-  const animationProps = animated 
-    ? {
-        initial: "initial",
-        animate: "animate",
-        whileHover: "hover",
-        variants: logoAnimation
-      } 
-    : {};
-
-  return (
-    <Link href="/">
-      <LogoComponent
-        className={cn(
-          "font-bold tracking-tight flex items-center",
-          sizeClass[size],
-          className
-        )}
-        {...animationProps}
-      >
-        <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-          NAVYK
-        </span>
-        {animated ? (
-          <motion.div
-            className="ml-1 w-2 h-2 rounded-full bg-accent"
-            variants={dotAnimation}
-          />
-        ) : (
-          <div className="ml-1 w-2 h-2 rounded-full bg-accent" />
-        )}
-      </LogoComponent>
-    </Link>
-  );
+const sizeMap = {
+  small: "w-6",
+  medium: "w-8",
+  large: "w-12"
 };
 
-export default Logo; 
+export default function Logo({ className, size = "medium" }: LogoProps) {
+  return (
+    <Link href="/" className={cn("inline-block", className)}>
+      <svg
+        viewBox="0 0 3687 3901"
+        className={cn(sizeMap[size], "h-auto")}
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M517 2045C517 1351.88 1078.88 790 1772 790H2432C3125.12 790 3687 1351.88 3687 2045V2646C3687 3339.12 3125.12 3901 2432 3901H1772C1078.88 3901 517 3339.12 517 2646V2045Z"
+          fill="url(#paint0_linear_39_17)"
+        />
+        <path
+          d="M0 1649C0 955.883 561.883 394 1255 394H1915C2608.12 394 3170 955.883 3170 1649V2250C3170 2943.12 2608.12 3505 1915 3505H1255C561.883 3505 0 2943.12 0 2250V1649Z"
+          fill="url(#paint1_linear_39_17)"
+        />
+        <path
+          d="M2437 500C2437 223.858 2660.86 0 2937 0H3187C3463.14 0 3687 223.858 3687 500V725C3687 1001.14 3463.14 1225 3187 1225H2937C2660.86 1225 2437 1001.14 2437 725V500Z"
+          fill="url(#paint2_linear_39_17)"
+          fillOpacity="0.82"
+        />
+        <path
+          d="M1379.35 2033V2493H1045.35V1353H1383.35L1685.35 1813C1730.68 1881 1765.35 1938.33 1789.35 1985H1795.35V1353H2127.35V2493H1787.35L1477.35 2013L1387.35 1877H1381.35L1379.35 2033Z"
+          fill="white"
+        />
+        <defs>
+          <linearGradient
+            id="paint0_linear_39_17"
+            x1="1843.5"
+            y1="0"
+            x2="1843.5"
+            y2="3901"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stopColor="#8C74E4" />
+            <stop offset="1" stopColor="#9C6FDA" />
+          </linearGradient>
+          <linearGradient
+            id="paint1_linear_39_17"
+            x1="1843.5"
+            y1="0"
+            x2="1843.5"
+            y2="3901"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stopColor="#6F80F9" />
+            <stop offset="1" stopColor="#6B30F2" />
+          </linearGradient>
+          <linearGradient
+            id="paint2_linear_39_17"
+            x1="1843.5"
+            y1="0"
+            x2="1843.5"
+            y2="3901"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stopColor="#FBC832" />
+            <stop offset="1" stopColor="#F8BC32" />
+          </linearGradient>
+        </defs>
+      </svg>
+    </Link>
+  );
+}
+

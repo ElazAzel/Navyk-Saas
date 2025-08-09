@@ -26,7 +26,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { FireIcon as FireIconSolid, StarIcon as StarIconSolid } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion";
-import PageLayout from "@/app/components/PageLayout";
+import PageLayout from "@/components/PageLayout";
 import Link from "next/link";
 
 export default function StudentProfile() {

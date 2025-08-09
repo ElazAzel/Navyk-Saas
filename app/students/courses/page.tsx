@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 import { motion } from "framer-motion";
-import PageLayout from "@/app/components/PageLayout";
+import PageLayout from "@/components/PageLayout";
 import CourseCard, { Course } from "@/app/components/CourseCard";
 import { 
   AcademicCapIcon, 

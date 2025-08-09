@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { motion, AnimatePresence } from "framer-motion";
-import PageLayout from "@/app/components/PageLayout";
+import PageLayout from "@/components/PageLayout";
 import AchievementCard, { Achievement } from "@/app/components/AchievementCard";
 import UserLevel from "@/app/components/UserLevel";
 import {

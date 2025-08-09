@@ -1,429 +1,496 @@
 "use client";
 
-import React from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { CalendarIcon, UserIcon, BriefcaseIcon, PlusIcon } from "@heroicons/react/24/outline";
-import AnalyticsDashboard from "@/app/components/AnalyticsDashboard";
-import PageLayout from "@/app/components/PageLayout";
+import React, { useState } from "react";
+import RoleLayout from "@/components/RoleLayout";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/app/components/ui/card";
+import { useAuth } from "@/context/auth-context";
+import { AnimatedStatistics, AnimatedProgressBar, AnimatedDemoChart } from "@/app/components/animations";
+import { motion } from "framer-motion";
+import { 
+  Briefcase, Users, Building, BarChart2, Calendar, 
+  Clock, ArrowUpRight, TrendingUp, ChevronRight,
+  FileCheck, UserPlus, Target, Bell, Filter
+} from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/app/components/ui/tabs";
+import { Badge } from "@/app/components/ui/badge";
+import { Button } from "@/app/components/ui/button";
+import Link from "next/link";
+import { Avatar, AvatarFallback, AvatarImage } from "@/app/components/ui/avatar";
 
 export default function EmployerDashboard() {
-  // Данные активных вакансий
+  const { user } = useAuth();
+  const [activeTab, setActiveTab] = useState("overview");
+  
+  // Анимация для карточек
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+  
+  const item = {
+    hidden: { y: 20, opacity: 0 },
+    show: { y: 0, opacity: 1 }
+  };
+  
+  // Данные для вакансий
   const activeJobs = [
-    {
-      id: "1",
-      title: "Frontend Developer",
-      location: "Алматы",
-      type: "Полная занятость",
-      applicantsCount: 24,
-      viewsCount: 178,
-      postedDate: "10 мая 2023",
-      status: "active",
+    { title: "Frontend разработчик", applicants: 12, views: 142, created: "10.04.2023" },
+    { title: "UX/UI дизайнер", applicants: 8, views: 97, created: "15.04.2023" },
+    { title: "DevOps инженер", applicants: 6, views: 78, created: "20.04.2023" },
+  ];
+  
+  // Данные для соискателей
+  const recentApplicants = [
+    { 
+      name: "Александр Иванов", 
+      position: "Frontend разработчик", 
+      avatar: "/avatars/student.png",
+      status: "new" 
     },
-    {
-      id: "2",
-      title: "React Native Developer",
-      location: "Удаленно",
-      type: "Полная занятость",
-      applicantsCount: 18,
-      viewsCount: 145,
-      postedDate: "5 мая 2023",
-      status: "active",
+    { 
+      name: "Елена Смирнова", 
+      position: "UX/UI дизайнер", 
+      avatar: null,
+      status: "interview" 
     },
-    {
-      id: "3",
-      title: "Junior DevOps Engineer",
-      location: "Астана",
-      type: "Стажировка",
-      applicantsCount: 12,
-      viewsCount: 98,
-      postedDate: "15 апреля 2023",
-      status: "active",
+    { 
+      name: "Дмитрий Козлов", 
+      position: "DevOps инженер", 
+      avatar: null,
+      status: "review" 
     },
   ];
-
-  // Данные подходящих кандидатов
-  const matchedCandidates = [
-    {
-      id: "1",
-      name: "Алмас Сериков",
-      university: "КазНУ им. аль-Фараби",
-      specialization: "Информационные системы",
-      skills: ["JavaScript", "React", "TypeScript"],
-      matchScore: 95,
-      applied: true,
-      viewedProfile: true,
+  
+  // Данные для грядущих интервью
+  const upcomingInterviews = [
+    { 
+      candidate: "Александр Иванов", 
+      position: "Frontend разработчик", 
+      date: "14 Апреля, 10:00", 
+      type: "Техническое интервью" 
     },
-    {
-      id: "2",
-      name: "Айдар Нурланов",
-      university: "КБТУ",
-      specialization: "Компьютерные науки",
-      skills: ["JavaScript", "Node.js", "Python"],
-      matchScore: 85,
-      applied: false,
-      viewedProfile: true,
-    },
-    {
-      id: "3",
-      name: "Дана Казиева",
-      university: "Nazarbayev University",
-      specialization: "Программная инженерия",
-      skills: ["React", "Redux", "HTML/CSS"],
-      matchScore: 80,
-      applied: false,
-      viewedProfile: false,
-    },
-    {
-      id: "4",
-      name: "Нурсултан Кенжебаев",
-      university: "МУИТ",
-      specialization: "Информационные технологии",
-      skills: ["JavaScript", "React", "Git"],
-      matchScore: 75,
-      applied: true,
-      viewedProfile: true,
-    },
+    { 
+      candidate: "Елена Смирнова", 
+      position: "UX/UI дизайнер", 
+      date: "16 Апреля, 14:30", 
+      type: "Презентация портфолио" 
+    }
   ];
-
-  // Данные последних активностей
-  const recentActivities = [
-    {
-      id: "1",
-      type: "application",
-      studentName: "Алмас Сериков",
-      jobTitle: "Frontend Developer",
-      date: "15 мая 2023, 14:23",
-    },
-    {
-      id: "2",
-      type: "viewed",
-      studentName: "Айдар Нурланов",
-      jobTitle: "React Native Developer",
-      date: "15 мая 2023, 11:45",
-    },
-    {
-      id: "3",
-      type: "saved",
-      studentName: "Дана Казиева",
-      jobTitle: "Junior DevOps Engineer",
-      date: "14 мая 2023, 18:30",
-    },
-    {
-      id: "4",
-      type: "application",
-      studentName: "Нурсултан Кенжебаев",
-      jobTitle: "Frontend Developer",
-      date: "13 мая 2023, 09:15",
-    },
-    {
-      id: "5",
-      type: "viewed",
-      studentName: "Асель Бектурова",
-      jobTitle: "Frontend Developer",
-      date: "12 мая 2023, 16:50",
-    },
-  ];
-
+  
+  // Получение статуса кандидата
+  const getStatusBadge = (status: string) => {
+    switch(status) {
+      case "new":
+        return <Badge className="bg-blue-500">Новый</Badge>;
+      case "review":
+        return <Badge className="bg-yellow-500">На рассмотрении</Badge>;
+      case "interview":
+        return <Badge className="bg-green-500">Интервью</Badge>;
+      case "offer":
+        return <Badge className="bg-purple-500">Предложение</Badge>;
+      case "hired":
+        return <Badge className="bg-green-700">Нанят</Badge>;
+      case "rejected":
+        return <Badge variant="destructive">Отклонен</Badge>;
+      default:
+        return <Badge variant="outline">Неизвестно</Badge>;
+    }
+  };
+  
   return (
-    <PageLayout>
-      <div className="space-y-6">
-        <div className="container py-8">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
-            <div>
-              <h1 className="text-3xl font-bold tracking-tight">Дашборд компании</h1>
-              <p className="text-muted-foreground">
-                Управляйте вакансиями и следите за откликами студентов
-              </p>
-            </div>
-            <div className="mt-4 md:mt-0">
-              <Button>
-                <PlusIcon className="h-4 w-4 mr-2" />
-                Создать вакансию
-              </Button>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-            <Card>
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium text-muted-foreground">
-                  Активных вакансий
-                </CardTitle>
+    <RoleLayout pageTitle="Панель управления компанией">
+      <div className="space-y-8">
+        <motion.div 
+          variants={container} 
+          initial="hidden"
+          animate="show"
+          className="grid gap-4 md:grid-cols-2 lg:grid-cols-4"
+        >
+          <motion.div variants={item}>
+            <Card className="overflow-hidden" variant="elevated">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Активные вакансии</CardTitle>
+                <Briefcase className="h-4 w-4 text-primary" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">{activeJobs.length}</div>
-                <div className="flex items-center mt-1">
-                  <span className="text-sm text-green-500">+1 за месяц</span>
+                <div className="text-2xl font-bold">
+                  <AnimatedStatistics from={0} to={12} />
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  открытых позиций
+                </p>
+                <div className="mt-3 flex items-center text-xs text-green-600 dark:text-green-500">
+                  <TrendingUp className="h-3 w-3 mr-1" />
+                  <span>+3 за последний месяц</span>
                 </div>
               </CardContent>
             </Card>
-            <Card>
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium text-muted-foreground">
-                  Всего откликов
-                </CardTitle>
+          </motion.div>
+          
+          <motion.div variants={item}>
+            <Card className="overflow-hidden" variant="elevated">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Кандидаты</CardTitle>
+                <Users className="h-4 w-4 text-secondary" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">54</div>
-                <div className="flex items-center mt-1">
-                  <span className="text-sm text-green-500">+12 за неделю</span>
+                <div className="text-2xl font-bold">
+                  <AnimatedStatistics from={0} to={48} />
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  активных соискателей
+                </p>
+                <div className="mt-3">
+                  <AnimatedProgressBar value={60} max={100} color="secondary" />
                 </div>
               </CardContent>
             </Card>
-            <Card>
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium text-muted-foreground">
-                  Просмотров вакансий
-                </CardTitle>
+          </motion.div>
+          
+          <motion.div variants={item}>
+            <Card className="overflow-hidden" variant="elevated">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Найм за квартал</CardTitle>
+                <Building className="h-4 w-4 text-accent" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">421</div>
-                <div className="flex items-center mt-1">
-                  <span className="text-sm text-green-500">+85 за неделю</span>
+                <div className="text-2xl font-bold">
+                  <AnimatedStatistics from={0} to={8} />
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  трудоустроенных кандидатов
+                </p>
+                <div className="mt-3 flex items-center text-xs">
+                  <Badge className="bg-accent h-5">+20% к прошлому кварталу</Badge>
                 </div>
               </CardContent>
             </Card>
-            <Card>
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium text-muted-foreground">
-                  Приглашено студентов
-                </CardTitle>
+          </motion.div>
+          
+          <motion.div variants={item}>
+            <Card className="overflow-hidden" variant="elevated">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Конверсия</CardTitle>
+                <BarChart2 className="h-4 w-4 text-blue-500" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">12</div>
-                <div className="flex items-center mt-1">
-                  <span className="text-sm text-green-500">+5 за месяц</span>
+                <div className="text-2xl font-bold">
+                  <AnimatedStatistics from={0} to={16.8} suffix="%" />
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  от просмотра до отклика
+                </p>
+                <div className="mt-3">
+                  <AnimatedProgressBar value={16.8} max={100} color="blue-500" />
                 </div>
               </CardContent>
             </Card>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-            <div className="lg:col-span-2">
+          </motion.div>
+        </motion.div>
+        
+        <div className="mb-6">
+          <Tabs defaultValue="overview" className="w-full">
+            <TabsList className="mb-4">
+              <TabsTrigger value="overview" onClick={() => setActiveTab("overview")}>Обзор</TabsTrigger>
+              <TabsTrigger value="jobs" onClick={() => setActiveTab("jobs")}>Вакансии</TabsTrigger>
+              <TabsTrigger value="applicants" onClick={() => setActiveTab("applicants")}>Кандидаты</TabsTrigger>
+              <TabsTrigger value="analytics" onClick={() => setActiveTab("analytics")}>Аналитика</TabsTrigger>
+            </TabsList>
+            
+            <TabsContent value="overview">
+              <div className="grid gap-4 md:grid-cols-2">
+                <Card animation="hover">
+                  <CardHeader>
+                    <div className="flex justify-between items-center">
+                      <CardTitle>Популярные вакансии</CardTitle>
+                      <Badge variant="outline" className="font-normal">
+                        ТОП 3
+                      </Badge>
+                    </div>
+                    <CardDescription>
+                      Наиболее просматриваемые вакансии
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="space-y-4">
+                      {activeJobs.map((job, index) => (
+                        <div key={index} className="group cursor-pointer">
+                          <div className="flex items-center justify-between mb-1">
+                            <div className="flex items-center">
+                              <div className={`mr-2 h-3 w-3 rounded-full ${index === 0 ? 'bg-primary' : index === 1 ? 'bg-yellow-500' : 'bg-red-500'}`} />
+                              <span className="font-medium group-hover:text-primary transition-colors">{job.title}</span>
+                            </div>
+                            <span className="text-muted-foreground text-sm">{job.views} просмотров</span>
+                          </div>
+                          <div className="flex justify-between items-center text-xs text-muted-foreground">
+                            <span className="flex items-center">
+                              <Users className="h-3 w-3 mr-1" />
+                              {job.applicants} соискателей
+                            </span>
+                            <span className="flex items-center">
+                              <Clock className="h-3 w-3 mr-1" />
+                              От {job.created}
+                            </span>
+                          </div>
+                          <AnimatedProgressBar 
+                            value={index === 0 ? 75 : index === 1 ? 50 : 40} 
+                            color={index === 0 ? 'primary' : index === 1 ? 'yellow-500' : 'red-500'} 
+                            className="mt-2"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                    
+                    <div className="mt-4 pt-3 border-t">
+                      <Link
+                        href="/employers/jobs"
+                        className="inline-flex items-center text-sm text-primary"
+                      >
+                        Все вакансии
+                        <ChevronRight className="ml-1 h-4 w-4" />
+                      </Link>
+                    </div>
+                  </CardContent>
+                </Card>
+                
+                <Card animation="hover">
+                  <CardHeader>
+                    <div className="flex justify-between items-center">
+                      <CardTitle>Ближайшие собеседования</CardTitle>
+                      <Badge 
+                        variant="secondary" 
+                        className="font-normal bg-secondary/20 text-secondary"
+                      >
+                        {upcomingInterviews.length} запланировано
+                      </Badge>
+                    </div>
+                    <CardDescription>
+                      Запланированные встречи
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      {upcomingInterviews.map((interview, index) => (
+                        <div key={index} className="flex items-start group cursor-pointer transition-all">
+                          <div className="mr-4 mt-1 p-2 rounded-full bg-accent/10 text-accent">
+                            <Calendar className="h-5 w-5" />
+                          </div>
+                          <div className="flex-1">
+                            <div className="flex items-center">
+                              <p className="font-medium group-hover:text-primary transition-colors">{interview.candidate}</p>
+                              <Badge className="ml-2 h-5 text-[10px]">{interview.type}</Badge>
+                            </div>
+                            <p className="text-sm text-muted-foreground">{interview.position}</p>
+                            <div className="flex items-center text-sm text-muted-foreground mt-1">
+                              <Clock className="mr-1 h-3 w-3" />
+                              {interview.date}
+                            </div>
+                          </div>
+                          <Button size="icon" variant="ghost" className="opacity-0 group-hover:opacity-100">
+                            <ArrowUpRight className="h-4 w-4" />
+                          </Button>
+                        </div>
+                      ))}
+                    </div>
+                    
+                    <div className="mt-4 pt-3 border-t">
+                      <div className="flex justify-between items-center">
+                        <Link
+                          href="/employers/interviews"
+                          className="inline-flex items-center text-sm text-primary"
+                        >
+                          Все собеседования
+                          <ChevronRight className="ml-1 h-4 w-4" />
+                        </Link>
+                        <Button variant="outline" size="sm">
+                          <Bell className="h-3.5 w-3.5 mr-1.5" />
+                          Напоминания
+                        </Button>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </TabsContent>
+            
+            <TabsContent value="jobs">
               <Card>
                 <CardHeader>
-                  <CardTitle>Активные вакансии</CardTitle>
-                  <CardDescription>
-                    Управляйте вакансиями и отслеживайте статистику
-                  </CardDescription>
+                  <div className="flex justify-between items-center">
+                    <CardTitle>Управление вакансиями</CardTitle>
+                    <Button>
+                      <Briefcase className="h-4 w-4 mr-2" />
+                      Новая вакансия
+                    </Button>
+                  </div>
+                  <CardDescription>Список всех ваших активных вакансий</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    {activeJobs.map((job) => (
-                      <div key={job.id} className="flex items-center justify-between p-4 border rounded-lg">
-                        <div>
+                    <div className="flex items-center justify-between">
+                      <div className="relative w-64">
+                        <input 
+                          type="text" 
+                          placeholder="Поиск вакансий..." 
+                          className="h-9 w-full rounded-md border border-input px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                        />
+                      </div>
+                      <Button variant="outline" size="sm">
+                        <Filter className="h-3.5 w-3.5 mr-1.5" />
+                        Фильтр
+                      </Button>
+                    </div>
+                    
+                    <div className="rounded-md border">
+                      <div className="grid grid-cols-5 p-3 text-sm font-medium border-b">
+                        <div>Название</div>
+                        <div>Создана</div>
+                        <div className="text-center">Просмотры</div>
+                        <div className="text-center">Соискатели</div>
+                        <div className="text-center">Действия</div>
+                      </div>
+                      
+                      {activeJobs.map((job, index) => (
+                        <div 
+                          key={index} 
+                          className="grid grid-cols-5 p-3 text-sm hover:bg-muted/50 items-center"
+                        >
                           <div className="font-medium">{job.title}</div>
-                          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1 text-sm text-muted-foreground">
-                            <div className="flex items-center">
-                              <svg
-                                className="h-4 w-4 mr-1"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth={2}
-                                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                                />
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth={2}
-                                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                                />
-                              </svg>
-                              <span>{job.location}</span>
-                            </div>
-                            <div className="flex items-center">
-                              <BriefcaseIcon className="h-4 w-4 mr-1" />
-                              <span>{job.type}</span>
-                            </div>
-                            <div className="flex items-center">
-                              <CalendarIcon className="h-4 w-4 mr-1" />
-                              <span>Опубликовано: {job.postedDate}</span>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="flex flex-col items-end space-y-2">
-                          <div className="flex items-center gap-4">
-                            <div className="text-center">
-                              <div className="text-lg font-bold">{job.applicantsCount}</div>
-                              <div className="text-xs text-muted-foreground">откликов</div>
-                            </div>
-                            <div className="text-center">
-                              <div className="text-lg font-bold">{job.viewsCount}</div>
-                              <div className="text-xs text-muted-foreground">просмотров</div>
-                            </div>
-                          </div>
-                          <div>
-                            <Button size="sm" variant="outline">
-                              Управлять
+                          <div className="text-muted-foreground">{job.created}</div>
+                          <div className="text-center">{job.views}</div>
+                          <div className="text-center">{job.applicants}</div>
+                          <div className="text-center space-x-2">
+                            <Button size="sm" variant="ghost">
+                              <Users className="h-4 w-4" />
+                            </Button>
+                            <Button size="sm" variant="ghost">
+                              <FileCheck className="h-4 w-4" />
                             </Button>
                           </div>
                         </div>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="mt-6 text-center">
-                    <Button variant="outline">
-                      Все вакансии
-                    </Button>
+                      ))}
+                    </div>
                   </div>
                 </CardContent>
               </Card>
-            </div>
-
-            <div>
-              <Card className="h-full">
+            </TabsContent>
+            
+            <TabsContent value="applicants">
+              <Card>
                 <CardHeader>
-                  <CardTitle>Последние активности</CardTitle>
-                  <CardDescription>
-                    Отклики и просмотры ваших вакансий
-                  </CardDescription>
+                  <div className="flex justify-between items-center">
+                    <CardTitle>Недавние кандидаты</CardTitle>
+                    <Badge className="font-normal">
+                      Всего: 48 соискателей
+                    </Badge>
+                  </div>
+                  <CardDescription>Последние отклики на ваши вакансии</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-6">
-                    {recentActivities.map((activity) => (
-                      <div key={activity.id} className="flex items-start space-x-3">
-                        <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
-                          activity.type === "application" ? "bg-green-100 text-green-700" :
-                          activity.type === "viewed" ? "bg-blue-100 text-blue-700" :
-                          "bg-amber-100 text-amber-700"
-                        }`}>
-                          {activity.type === "application" ? (
-                            <BriefcaseIcon className="h-4 w-4" />
-                          ) : activity.type === "viewed" ? (
-                            <svg
-                              className="h-4 w-4"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                              />
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                              />
-                            </svg>
-                          ) : (
-                            <svg
-                              className="h-4 w-4"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"
-                              />
-                            </svg>
-                          )}
+                  <div className="rounded-md border overflow-hidden">
+                    <div className="grid grid-cols-5 p-3 text-sm font-medium border-b">
+                      <div>Соискатель</div>
+                      <div>Позиция</div>
+                      <div className="text-center">Статус</div>
+                      <div className="text-center">Дата отклика</div>
+                      <div className="text-center">Действия</div>
+                    </div>
+                    
+                    {recentApplicants.map((applicant, index) => (
+                      <div 
+                        key={index} 
+                        className="grid grid-cols-5 p-3 text-sm hover:bg-muted/50 items-center"
+                      >
+                        <div className="flex items-center">
+                          <Avatar className="h-8 w-8 mr-2">
+                            <AvatarImage src={applicant.avatar || undefined} alt={applicant.name} />
+                            <AvatarFallback>{applicant.name.charAt(0)}</AvatarFallback>
+                          </Avatar>
+                          <span className="font-medium">{applicant.name}</span>
                         </div>
-                        <div>
-                          <div className="font-medium text-sm">
-                            {activity.studentName} {activity.type === "application" ? "откликнулся на" :
-                              activity.type === "viewed" ? "просмотрел" : "сохранил"} вакансию <span className="font-semibold">{activity.jobTitle}</span>
-                          </div>
-                          <div className="text-xs text-muted-foreground mt-1">{activity.date}</div>
+                        <div className="text-muted-foreground">{applicant.position}</div>
+                        <div className="text-center">{getStatusBadge(applicant.status)}</div>
+                        <div className="text-center text-muted-foreground">
+                          {index === 0 ? "Вчера" : index === 1 ? "3 дня назад" : "Неделю назад"}
                         </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="mt-6 text-center">
-                    <Button variant="outline" size="sm">
-                      Больше активностей
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-
-          <div className="mb-8">
-            <Card>
-              <CardHeader>
-                <CardTitle>Подходящие кандидаты</CardTitle>
-                <CardDescription>
-                  Студенты, чьи навыки соответствуют вашим вакансиям
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {matchedCandidates.map((candidate) => (
-                    <div key={candidate.id} className="flex items-center justify-between p-4 border rounded-lg">
-                      <div className="flex items-center">
-                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-4">
-                          <UserIcon className="h-5 w-5 text-primary" />
-                        </div>
-                        <div>
-                          <div className="font-medium">
-                            {candidate.name}
-                            {candidate.applied && (
-                              <Badge className="ml-2 bg-green-100 text-green-800 hover:bg-green-200" variant="outline">
-                                Откликнулся
-                              </Badge>
-                            )}
-                          </div>
-                          <div className="text-sm text-muted-foreground">
-                            {candidate.university}, {candidate.specialization}
-                          </div>
-                          <div className="flex flex-wrap gap-1 mt-1">
-                            {candidate.skills.map((skill) => (
-                              <Badge key={skill} variant="outline" className="text-xs">
-                                {skill}
-                              </Badge>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="flex flex-col items-end space-y-2">
-                        <div className="text-center">
-                          <div className="text-lg font-bold text-primary">{candidate.matchScore}%</div>
-                          <div className="text-xs text-muted-foreground">совпадение</div>
-                        </div>
-                        <div>
-                          <Button size="sm">
-                            {candidate.viewedProfile ? "Пригласить" : "Просмотреть профиль"}
+                        <div className="text-center flex justify-center space-x-2">
+                          <Button size="sm" variant="outline">
+                            <UserPlus className="h-3.5 w-3.5 mr-1.5" />
+                            Интервью
+                          </Button>
+                          <Button size="icon" variant="ghost">
+                            <Target className="h-4 w-4" />
                           </Button>
                         </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-6 text-center">
-                  <Button variant="outline">
-                    Все кандидаты
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          <div>
-            <h2 className="text-2xl font-bold mb-4">Аналитика вакансий</h2>
-            <AnalyticsDashboard
-              userType="employer"
-              period="month"
-              onPeriodChange={() => {}}
-            />
-          </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+            
+            <TabsContent value="analytics">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Аналитика по вакансиям</CardTitle>
+                  <CardDescription>Статистика за последние 30 дней</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="mb-6">
+                    <AnimatedDemoChart />
+                  </div>
+                  <div className="grid gap-4 md:grid-cols-3">
+                    <Card>
+                      <CardHeader className="pb-2">
+                        <CardTitle className="text-sm">Всего просмотров</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="text-2xl font-bold">
+                          <AnimatedStatistics from={0} to={420} />
+                        </div>
+                        <p className="text-xs text-muted-foreground">
+                          За последние 30 дней
+                        </p>
+                      </CardContent>
+                    </Card>
+                    <Card>
+                      <CardHeader className="pb-2">
+                        <CardTitle className="text-sm">Новых откликов</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="text-2xl font-bold">
+                          <AnimatedStatistics from={0} to={52} />
+                        </div>
+                        <p className="text-xs text-muted-foreground">
+                          За последние 30 дней
+                        </p>
+                      </CardContent>
+                    </Card>
+                    <Card>
+                      <CardHeader className="pb-2">
+                        <CardTitle className="text-sm">Конверсия просмотров</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="text-2xl font-bold">
+                          <AnimatedStatistics from={0} to={12.4} suffix="%" />
+                        </div>
+                        <p className="text-xs text-muted-foreground">
+                          За последние 30 дней
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+          </Tabs>
         </div>
       </div>
-    </PageLayout>
+    </RoleLayout>
   );
 } 
