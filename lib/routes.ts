@@ -6,31 +6,31 @@ export const ROUTES = {
 
   // Страницы для студентов
   STUDENT: {
-    PROFILE: '/students/profile',
-    ROADMAP: '/students/roadmap',
-    COURSES: '/students/courses',
-    JOBS: '/students/jobs',
+    PROFILE: '/student/profile',
+    ROADMAP: '/student/roadmap',
+    COURSES: '/student/courses',
+    JOBS: '/student/jobs',
   },
 
   // Страницы для работодателей
   EMPLOYER: {
-    DASHBOARD: '/employers/dashboard',
-    JOBS: '/employers/jobs',
-    CANDIDATES: '/employers/candidates',
+    DASHBOARD: '/employer/dashboard',
+    JOBS: '/employer/jobs',
+    CANDIDATES: '/employer/candidates',
   },
 
   // Страницы для университетов
   UNIVERSITY: {
-    DASHBOARD: '/universities/dashboard',
-    STUDENTS: '/universities/students',
-    ANALYTICS: '/universities/analytics',
+    DASHBOARD: '/university/dashboard',
+    STUDENTS: '/university/students',
+    ANALYTICS: '/university/analytics',
   },
 
   // Страницы для менторов
   MENTOR: {
-    DASHBOARD: '/mentors/dashboard',
-    SESSIONS: '/mentors/sessions',
-    STUDENTS: '/mentors/students',
+    DASHBOARD: '/mentor/dashboard',
+    SESSIONS: '/mentor/sessions',
+    STUDENTS: '/mentor/students',
   },
 
   // Страницы для администраторов

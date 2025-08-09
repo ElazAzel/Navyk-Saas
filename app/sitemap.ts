@@ -60,37 +60,37 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Студенческие страницы
   const studentPages = [
     {
-      url: `${baseUrl}/students/profile`,
+      url: `${baseUrl}/student/profile`,
       lastModified: currentDate,
       changeFrequency: 'daily' as const,
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/students/roadmap`,
+      url: `${baseUrl}/student/roadmap`,
       lastModified: currentDate,
       changeFrequency: 'weekly' as const,
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/students/courses`,
+      url: `${baseUrl}/student/courses`,
       lastModified: currentDate,
       changeFrequency: 'daily' as const,
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/students/events`,
+      url: `${baseUrl}/student/events`,
       lastModified: currentDate,
       changeFrequency: 'daily' as const,
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/students/jobs`,
+      url: `${baseUrl}/student/jobs`,
       lastModified: currentDate,
       changeFrequency: 'daily' as const,
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/students/analytics`,
+      url: `${baseUrl}/student/analytics`,
       lastModified: currentDate,
       changeFrequency: 'daily' as const,
       priority: 0.7,
@@ -100,31 +100,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Страницы работодателей
   const employerPages = [
     {
-      url: `${baseUrl}/employers/dashboard`,
+      url: `${baseUrl}/employer/dashboard`,
       lastModified: currentDate,
       changeFrequency: 'daily' as const,
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/employers/jobs`,
+      url: `${baseUrl}/employer/jobs`,
       lastModified: currentDate,
       changeFrequency: 'daily' as const,
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/employers/candidates`,
+      url: `${baseUrl}/employer/candidates`,
       lastModified: currentDate,
       changeFrequency: 'daily' as const,
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/employers/analytics`,
+      url: `${baseUrl}/employer/analytics`,
       lastModified: currentDate,
       changeFrequency: 'daily' as const,
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/employers/events`,
+      url: `${baseUrl}/employer/events`,
       lastModified: currentDate,
       changeFrequency: 'weekly' as const,
       priority: 0.7,
@@ -134,31 +134,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Страницы университетов
   const universityPages = [
     {
-      url: `${baseUrl}/universities/dashboard`,
+      url: `${baseUrl}/university/dashboard`,
       lastModified: currentDate,
       changeFrequency: 'daily' as const,
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/universities/students`,
+      url: `${baseUrl}/university/students`,
       lastModified: currentDate,
       changeFrequency: 'daily' as const,
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/universities/courses`,
+      url: `${baseUrl}/university/courses`,
       lastModified: currentDate,
       changeFrequency: 'weekly' as const,
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/universities/analytics`,
+      url: `${baseUrl}/university/analytics`,
       lastModified: currentDate,
       changeFrequency: 'daily' as const,
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/universities/events`,
+      url: `${baseUrl}/university/events`,
       lastModified: currentDate,
       changeFrequency: 'weekly' as const,
       priority: 0.7,
@@ -168,25 +168,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Страницы менторов
   const mentorPages = [
     {
-      url: `${baseUrl}/mentors/dashboard`,
+      url: `${baseUrl}/mentor/dashboard`,
       lastModified: currentDate,
       changeFrequency: 'daily' as const,
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/mentors/students`,
+      url: `${baseUrl}/mentor/students`,
       lastModified: currentDate,
       changeFrequency: 'daily' as const,
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/mentors/sessions`,
+      url: `${baseUrl}/mentor/sessions`,
       lastModified: currentDate,
       changeFrequency: 'daily' as const,
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/mentors/analytics`,
+      url: `${baseUrl}/mentor/analytics`,
       lastModified: currentDate,
       changeFrequency: 'weekly' as const,
       priority: 0.7,
