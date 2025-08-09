@@ -66,6 +66,11 @@ const studentNavItems: NavItem[] = [
     title: "Достижения",
     href: "/students/achievements",
     icon: <Award className="h-5 w-5" />
+  },
+  {
+    title: "Аналитика",
+    href: "/students/analytics",
+    icon: <BarChart3 className="h-5 w-5" />
   }
 ];
 
@@ -165,6 +170,11 @@ const mentorNavItems: NavItem[] = [
     title: "Сообщения",
     href: "/mentors/messages",
     icon: <MessageSquare className="h-5 w-5" />
+  },
+  {
+    title: "Аналитика",
+    href: "/mentors/analytics",
+    icon: <BarChart3 className="h-5 w-5" />
   }
 ];
 
@@ -213,6 +223,11 @@ const adminNavItems: NavItem[] = [
     title: "Настройки платформы",
     href: "/admin/settings",
     icon: <Settings className="h-5 w-5" />
+  },
+  {
+    title: "Аналитика",
+    href: "/admin/analytics",
+    icon: <BarChart3 className="h-5 w-5" />
   }
 ];
 
