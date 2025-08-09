@@ -1,7 +1,0 @@
-{
-  "version": 2,
-  "functions": {
-    "app/sitemap.ts": { "runtime": "nodejs20.x" },
-    "middleware.ts": { "runtime": "edge" }
-  }
-}
