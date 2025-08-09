@@ -9,6 +9,7 @@ import { UserIcon, AcademicCapIcon, BuildingOfficeIcon, UserGroupIcon, ShieldChe
 import { Badge } from "./components/ui/badge";
 import { motion } from "framer-motion";
 import Footer from "./components/Footer";
+import AiDemo from "./components/AiDemo";
 
 // Импортируем анимированные компоненты
 import { 
@@ -95,20 +96,21 @@ export default function HomePage() {
         </div>
         
         <div className="mt-10">
-          <a 
-            href="/login" 
+          <a
+            href="/login"
             className="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-base font-medium text-primary-foreground shadow-sm hover:bg-primary/90 mr-4"
           >
             Войти
           </a>
-          <a 
-            href="/signup" 
+          <a
+            href="/signup"
             className="inline-flex items-center justify-center rounded-md border border-input bg-background px-6 py-3 text-base font-medium text-foreground shadow-sm hover:bg-accent hover:text-accent-foreground"
           >
             Регистрация
           </a>
         </div>
+        <AiDemo />
       </div>
     </div>
   );
-} 
+}
