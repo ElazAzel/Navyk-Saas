@@ -14,6 +14,14 @@ npm install
 npm run dev
 ```
 
+## Развертывание на Vercel
+Приложение оптимизировано для [Vercel](https://vercel.com).
+Для деплоя установите CLI и выполните:
+```bash
+npm i -g vercel
+vercel deploy
+```
+
 ## Дополнительно
 - Полное техническое задание см. в [TZ.md](TZ.md)
 - История изменений см. в [UPDATE.md](UPDATE.md)
