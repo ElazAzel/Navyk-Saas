@@ -1,12 +1,10 @@
-"use client";
-import React from "react";
-import PageLayout from "@/app/components/PageLayout";
+import Placeholder from "@/components/Placeholder";
 
 export default function AdminSecurityPage() {
   return (
-    <PageLayout>
-      <h1 className="text-2xl font-bold mb-4">Безопасность</h1>
-      <p>Настройки безопасности будут доступны здесь.</p>
-    </PageLayout>
+    <Placeholder
+      title="Безопасность"
+      description="Настройки безопасности будут доступны здесь."
+    />
   );
 }

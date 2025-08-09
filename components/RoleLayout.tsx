@@ -3,7 +3,7 @@
 import React, { ReactNode, useState, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "@/context/auth-context";
-import NavBar from "@/app/components/NavBar";
+import NavBar from "@/components/NavBar";
 import SideNav from "./SideNav";
 import { cn } from "@/lib/utils";
 import { AnimatedBackground } from "@/app/components/animations";

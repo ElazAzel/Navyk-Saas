@@ -1,12 +1,10 @@
-"use client";
-import React from "react";
-import PageLayout from "@/app/components/PageLayout";
+import Placeholder from "@/components/Placeholder";
 
 export default function StudentRoadmapPage() {
   return (
-    <PageLayout>
-      <h1 className="text-2xl font-bold mb-4">Карьерный план</h1>
-      <p>Раздел в разработке.</p>
-    </PageLayout>
+    <Placeholder
+      title="Карьерный план"
+      description="Раздел в разработке."
+    />
   );
 }

@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { motion } from "framer-motion";
-import PageLayout from "@/app/components/PageLayout";
+import PageLayout from "@/components/PageLayout";
 import EventCard, { Event } from "@/app/components/EventCard";
 import { 
   CalendarIcon, 

@@ -1,12 +1,10 @@
-"use client";
-import React from "react";
-import PageLayout from "@/app/components/PageLayout";
+import Placeholder from "@/components/Placeholder";
 
 export default function AdminUsersPage() {
   return (
-    <PageLayout>
-      <h1 className="text-2xl font-bold mb-4">Пользователи</h1>
-      <p>Здесь будет управление пользователями платформы.</p>
-    </PageLayout>
+    <Placeholder
+      title="Пользователи"
+      description="Здесь будет управление пользователями платформы."
+    />
   );
 }

@@ -1,8 +1,8 @@
 "use client";
 
 import React, { ReactNode } from "react";
-import NavBar from "./NavBar";
-import Footer from "./Footer";
+import NavBar from "@/components/NavBar";
+import Footer from "@/components/Footer";
 
 interface PageLayoutProps {
   children: ReactNode;

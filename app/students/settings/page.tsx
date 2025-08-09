@@ -1,12 +1,10 @@
-"use client";
-import React from "react";
-import PageLayout from "@/app/components/PageLayout";
+import Placeholder from "@/components/Placeholder";
 
 export default function StudentSettingsPage() {
   return (
-    <PageLayout>
-      <h1 className="text-2xl font-bold mb-4">Настройки</h1>
-      <p>Здесь будут настройки профиля.</p>
-    </PageLayout>
+    <Placeholder
+      title="Настройки"
+      description="Здесь будут настройки профиля."
+    />
   );
 }
