@@ -1,9 +1,4 @@
 {
-  "functions": {
-    "app/api/**/route.ts": {
-      "runtime": "nodejs20.x"
-    }
-  },
   "env": {
     "NEXT_TELEMETRY_DISABLED": "1"
   }
