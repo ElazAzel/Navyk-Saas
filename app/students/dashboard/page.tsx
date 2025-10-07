@@ -586,7 +586,7 @@ export default function StudentDashboard() {
                     
                     <div className="mt-4 pt-3 border-t">
                       <Link
-                        href="/student/roadmap"
+                        href="/students/roadmap"
                         className="inline-flex items-center text-sm text-primary"
                       >
                         Полная дорожная карта
@@ -643,7 +643,7 @@ export default function StudentDashboard() {
                     <div className="mt-4 pt-3 border-t">
                       <div className="flex justify-between items-center">
                         <Link
-                          href="/student/recommendations"
+                          href="/students/recommendations"
                           className="inline-flex items-center text-sm text-primary"
                         >
                           Все рекомендации
@@ -685,7 +685,7 @@ export default function StudentDashboard() {
                         </div>
                       ))}
                       <div className="pt-2 border-t">
-                        <Link href="/student/events">
+                        <Link href="/students/events">
                           <Button size="sm" variant="ghost" className="w-full justify-center">
                             Все мероприятия
                           </Button>
@@ -731,7 +731,7 @@ export default function StudentDashboard() {
                         <AnimatedProgressBar value={65} max={100} color="blue-500" />
                       </div>
                       <div className="pt-2 border-t">
-                        <Link href="/student/skills">
+                        <Link href="/students/skills">
                           <Button size="sm" variant="ghost" className="w-full justify-center">
                             Полный профиль навыков
                           </Button>
@@ -785,7 +785,7 @@ export default function StudentDashboard() {
                         </div>
                       </div>
                       <div className="pt-2 border-t">
-                        <Link href="/student/activity">
+                        <Link href="/students/activity">
                           <Button size="sm" variant="ghost" className="w-full justify-center">
                             Подробная статистика
                           </Button>

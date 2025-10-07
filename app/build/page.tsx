@@ -6,9 +6,10 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { UserIcon, AcademicCapIcon, BuildingOfficeIcon, UserGroupIcon, ShieldCheckIcon } from "@heroicons/react/24/outline";
+import { ROLE_ROUTE_PREFIX, getDashboardPath } from '@/lib/roleRoutes';
 
 interface RolePageLink {
-  role: string;
+  role: "student" | "employer" | "university" | "mentor" | "admin";
   title: string;
   icon: React.ReactNode;
   links: Array<{
@@ -40,7 +41,7 @@ export default function BuildPage() {
       icon: <BuildingOfficeIcon className="h-5 w-5" />,
       links: [
         {
-          url: "/employers/dashboard",
+          url: `/${ROLE_ROUTE_PREFIX.employer}/dashboard`,
           title: "Дашборд работодателя",
           description: "Аналитика и управление вакансиями"
         }
@@ -53,7 +54,7 @@ export default function BuildPage() {
       icon: <AcademicCapIcon className="h-5 w-5" />,
       links: [
         {
-          url: "/universities/dashboard",
+          url: `/${ROLE_ROUTE_PREFIX.university}/dashboard`,
           title: "Дашборд университета",
           description: "Управление образовательными программами"
         }
@@ -66,7 +67,7 @@ export default function BuildPage() {
       icon: <UserGroupIcon className="h-5 w-5" />,
       links: [
         {
-          url: "/mentors/dashboard",
+          url: `/${ROLE_ROUTE_PREFIX.mentor}/dashboard`,
           title: "Дашборд ментора",
           description: "Управление сессиями и отзывами студентов"
         }
@@ -79,7 +80,7 @@ export default function BuildPage() {
       icon: <ShieldCheckIcon className="h-5 w-5" />,
       links: [
         {
-          url: "/admin/dashboard",
+          url: `/${ROLE_ROUTE_PREFIX.admin}/dashboard`,
           title: "Панель администратора",
           description: "Управление пользователями и настройками платформы"
         }
@@ -134,7 +135,7 @@ export default function BuildPage() {
             <CardFooter className="flex justify-between border-t pt-6">
               <Badge variant="outline">{rolePage.links.length} {rolePage.links.length === 1 ? 'страница' : 'страницы'}</Badge>
               <Button variant="ghost" size="sm" asChild>
-                <Link href={`/${rolePage.role === "student" ? "students/profile" : rolePage.role + "s/dashboard"}`}>
+                <Link href={rolePage.role === "student" ? "/students/profile" : getDashboardPath(rolePage.role)}>
                   Перейти к основной странице
                 </Link>
               </Button>

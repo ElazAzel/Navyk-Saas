@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAuth, UserRole } from "@/context/auth-context";
+import { buildRolePath } from "@/lib/roleRoutes";
 import { cn } from "@/lib/utils";
 import {
   LayoutDashboard,
@@ -34,37 +35,37 @@ interface NavItem {
 const studentNavItems: NavItem[] = [
   {
     title: "Дашборд",
-    href: "/student/dashboard",
+    href: buildRolePath("student", "dashboard"),
     icon: <LayoutDashboard className="h-5 w-5" />
   },
   {
     title: "Профиль",
-    href: "/student/profile",
+    href: buildRolePath("student", "profile"),
     icon: <User className="h-5 w-5" />
   },
   {
     title: "Карьерный план",
-    href: "/student/roadmap",
+    href: buildRolePath("student", "roadmap"),
     icon: <FileText className="h-5 w-5" />
   },
   {
     title: "Курсы",
-    href: "/student/courses",
+    href: buildRolePath("student", "courses"),
     icon: <BookOpen className="h-5 w-5" />
   },
   {
     title: "Мероприятия",
-    href: "/student/events",
+    href: buildRolePath("student", "events"),
     icon: <Calendar className="h-5 w-5" />
   },
   {
     title: "Вакансии",
-    href: "/student/jobs",
+    href: buildRolePath("student", "jobs"),
     icon: <Briefcase className="h-5 w-5" />
   },
   {
     title: "Достижения",
-    href: "/student/achievements",
+    href: buildRolePath("student", "achievements"),
     icon: <Award className="h-5 w-5" />
   }
 ];

@@ -3,6 +3,7 @@
 import React, { ReactNode, useState, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "@/context/auth-context";
+import { getDashboardPath, normalizeRoleSegment } from "@/lib/roleRoutes";
 import NavBar from "@/app/components/NavBar";
 import SideNav from "./SideNav";
 import { cn } from "@/lib/utils";
@@ -41,11 +42,16 @@ export default function RoleLayout({
     }
 
     if (user && user.role) {
-      const currentRole = pathname.split("/")[1]; // например, "student" из "/student/profile"
-      if (currentRole !== user.role) {
+      const currentRoleSegment = pathname.split("/")[1]; // например, "students" из "/students/profile"
+      const normalizedRole = normalizeRoleSegment(currentRoleSegment);
+
+      if (normalizedRole && normalizedRole !== user.role) {
         // Если пользователь пытается получить доступ к ресурсам другой роли,
         // перенаправляем его на главную страницу его роли
-        router.push(`/${user.role}/dashboard`);
+        const dashboardPath = getDashboardPath(user.role);
+        if (pathname !== dashboardPath) {
+          router.push(dashboardPath);
+        }
       }
     }
   }, [user, isLoading, pathname, router]);
