@@ -13,6 +13,7 @@ import { Badge } from "@/app/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/app/components/ui/avatar";
 import { Button } from "@/app/components/ui/button";
 import { Progress } from "@/app/components/ui/progress";
+import { getDashboardPath, getSettingsPath } from "@/lib/roleRoutes";
 
 interface SideNavProps {
   className?: string;
@@ -22,7 +23,7 @@ export default function SideNav({ className }: SideNavProps) {
   const { user, logout } = useAuth();
   const [hoverProgress, setHoverProgress] = useState(false);
 
-  if (!user) return null;
+  if (!user || !user.role) return null;
 
   // Данные для демонстрации геймификации
   const userLevel = 12;
@@ -90,8 +91,8 @@ export default function SideNav({ className }: SideNavProps) {
         </div>
         
         <div className="space-y-1 px-3 mb-2">
-          <Link 
-            href={`/${user.role}/dashboard`}
+          <Link
+            href={getDashboardPath(user.role)}
             className="flex items-center py-2 px-3 text-sm rounded-md w-full hover:bg-accent hover:text-accent-foreground transition-colors"
           >
             <Home className="mr-2 h-4 w-4 text-primary" />
@@ -116,8 +117,8 @@ export default function SideNav({ className }: SideNavProps) {
         </div>
         
         <div className="mt-3 space-y-1 px-3">
-          <Link 
-            href={`/${user.role}/settings`}
+          <Link
+            href={getSettingsPath(user.role)}
             className="flex items-center py-2 px-3 text-sm rounded-md w-full hover:bg-accent hover:text-accent-foreground transition-colors"
           >
             <Settings className="mr-2 h-4 w-4 text-muted-foreground" />

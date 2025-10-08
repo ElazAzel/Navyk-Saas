@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { CalendarIcon, UserIcon, BriefcaseIcon, PlusIcon } from "@heroicons/react/24/outline";
 import AnalyticsDashboard from "@/app/components/AnalyticsDashboard";
-import PageLayout from "@/app/components/PageLayout";
+import RoleLayout from "@/components/RoleLayout";
 
 export default function EmployerDashboard() {
   // Данные активных вакансий
@@ -128,7 +128,7 @@ export default function EmployerDashboard() {
   ];
 
   return (
-    <PageLayout>
+    <RoleLayout pageTitle="Панель управления компанией">
       <div className="space-y-6">
         <div className="container py-8">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
@@ -424,6 +424,6 @@ export default function EmployerDashboard() {
           </div>
         </div>
       </div>
-    </PageLayout>
+    </RoleLayout>
   );
-} 
+}
