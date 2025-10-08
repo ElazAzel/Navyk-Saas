@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import PageLayout from "@/app/components/PageLayout";
+import RoleLayout from "@/components/RoleLayout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { BarChart2, TrendingUp, Target } from "lucide-react";
@@ -38,7 +38,7 @@ const courseStats = [
 
 export default function StudentAnalyticsPage() {
   return (
-    <PageLayout>
+    <RoleLayout pageTitle="Личная аналитика">
       <div className="space-y-8">
         <div>
           <h1 className="text-3xl font-bold tracking-tight mb-2">Личная аналитика</h1>
@@ -87,6 +87,6 @@ export default function StudentAnalyticsPage() {
           </CardContent>
         </Card>
       </div>
-    </PageLayout>
+    </RoleLayout>
   );
 }

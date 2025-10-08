@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import PageLayout from "@/app/components/PageLayout";
+import RoleLayout from "@/components/RoleLayout";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
@@ -26,7 +26,7 @@ const settings = [
 
 export default function StudentSettingsPage() {
   return (
-    <PageLayout>
+    <RoleLayout pageTitle="Настройки">
       <div className="space-y-8">
         <div>
           <h1 className="text-3xl font-bold tracking-tight mb-2">Настройки</h1>
@@ -55,6 +55,6 @@ export default function StudentSettingsPage() {
           </CardContent>
         </Card>
       </div>
-    </PageLayout>
+    </RoleLayout>
   );
 }

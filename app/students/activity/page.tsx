@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import PageLayout from "@/app/components/PageLayout";
+import RoleLayout from "@/components/RoleLayout";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CalendarDays, Award, GraduationCap, Briefcase } from "lucide-react";
@@ -43,7 +43,7 @@ const activityFeed = [
 
 export default function StudentActivityPage() {
   return (
-    <PageLayout>
+    <RoleLayout pageTitle="Активность">
       <div className="space-y-8">
         <div>
           <h1 className="text-3xl font-bold tracking-tight mb-2">Активность</h1>
@@ -70,6 +70,6 @@ export default function StudentActivityPage() {
           ))}
         </div>
       </div>
-    </PageLayout>
+    </RoleLayout>
   );
 }

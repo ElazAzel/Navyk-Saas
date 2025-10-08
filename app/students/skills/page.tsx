@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import PageLayout from "@/app/components/PageLayout";
+import RoleLayout from "@/components/RoleLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
@@ -34,7 +34,7 @@ const skills = [
 
 export default function StudentSkillsPage() {
   return (
-    <PageLayout>
+    <RoleLayout pageTitle="Навыки и прогресс">
       <div className="space-y-8">
         <div>
           <h1 className="text-3xl font-bold tracking-tight mb-2">Навыки и прогресс</h1>
@@ -65,6 +65,6 @@ export default function StudentSkillsPage() {
           ))}
         </div>
       </div>
-    </PageLayout>
+    </RoleLayout>
   );
 }

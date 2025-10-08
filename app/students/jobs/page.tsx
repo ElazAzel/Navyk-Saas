@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import PageLayout from "@/app/components/PageLayout";
+import RoleLayout from "@/components/RoleLayout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -39,7 +39,7 @@ const jobs = [
 
 export default function StudentJobsPage() {
   return (
-    <PageLayout>
+    <RoleLayout pageTitle="Подходящие вакансии">
       <div className="space-y-8">
         <div>
           <h1 className="text-3xl font-bold tracking-tight mb-2">Подходящие вакансии</h1>
@@ -90,6 +90,6 @@ export default function StudentJobsPage() {
           ))}
         </div>
       </div>
-    </PageLayout>
+    </RoleLayout>
   );
 }

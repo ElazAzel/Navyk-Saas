@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import PageLayout from "@/app/components/PageLayout";
+import RoleLayout from "@/components/RoleLayout";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
@@ -48,7 +48,7 @@ const roadmap = [
 
 export default function StudentRoadmapPage() {
   return (
-    <PageLayout>
+    <RoleLayout pageTitle="Карьерный план">
       <div className="space-y-8">
         <div>
           <h1 className="text-3xl font-bold tracking-tight mb-2">Карьерный план</h1>
@@ -103,6 +103,6 @@ export default function StudentRoadmapPage() {
           ))}
         </div>
       </div>
-    </PageLayout>
+    </RoleLayout>
   );
 }

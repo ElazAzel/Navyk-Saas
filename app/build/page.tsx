@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { UserIcon, AcademicCapIcon, BuildingOfficeIcon, UserGroupIcon, ShieldCheckIcon } from "@heroicons/react/24/outline";
-import { ROLE_ROUTE_PREFIX, getDashboardPath } from '@/lib/roleRoutes';
+import { buildRolePath, getDashboardPath } from '@/lib/roleRoutes';
 
 interface RolePageLink {
   role: "student" | "employer" | "university" | "mentor" | "admin";
@@ -28,7 +28,7 @@ export default function BuildPage() {
       icon: <UserIcon className="h-5 w-5" />,
       links: [
         {
-          url: "/students/profile",
+          url: buildRolePath("student", "profile"),
           title: "Профиль студента",
           description: "Личный профиль и карьерный план студента"
         }
@@ -41,7 +41,7 @@ export default function BuildPage() {
       icon: <BuildingOfficeIcon className="h-5 w-5" />,
       links: [
         {
-          url: `/${ROLE_ROUTE_PREFIX.employer}/dashboard`,
+          url: getDashboardPath("employer"),
           title: "Дашборд работодателя",
           description: "Аналитика и управление вакансиями"
         }
@@ -54,7 +54,7 @@ export default function BuildPage() {
       icon: <AcademicCapIcon className="h-5 w-5" />,
       links: [
         {
-          url: `/${ROLE_ROUTE_PREFIX.university}/dashboard`,
+          url: getDashboardPath("university"),
           title: "Дашборд университета",
           description: "Управление образовательными программами"
         }
@@ -67,7 +67,7 @@ export default function BuildPage() {
       icon: <UserGroupIcon className="h-5 w-5" />,
       links: [
         {
-          url: `/${ROLE_ROUTE_PREFIX.mentor}/dashboard`,
+          url: getDashboardPath("mentor"),
           title: "Дашборд ментора",
           description: "Управление сессиями и отзывами студентов"
         }
@@ -80,7 +80,7 @@ export default function BuildPage() {
       icon: <ShieldCheckIcon className="h-5 w-5" />,
       links: [
         {
-          url: `/${ROLE_ROUTE_PREFIX.admin}/dashboard`,
+          url: getDashboardPath("admin"),
           title: "Панель администратора",
           description: "Управление пользователями и настройками платформы"
         }
@@ -135,7 +135,7 @@ export default function BuildPage() {
             <CardFooter className="flex justify-between border-t pt-6">
               <Badge variant="outline">{rolePage.links.length} {rolePage.links.length === 1 ? 'страница' : 'страницы'}</Badge>
               <Button variant="ghost" size="sm" asChild>
-                <Link href={rolePage.role === "student" ? "/students/profile" : getDashboardPath(rolePage.role)}>
+                <Link href={getDashboardPath(rolePage.role)}>
                   Перейти к основной странице
                 </Link>
               </Button>
