@@ -33,7 +33,7 @@ import {
 import { StarIcon as StarIconSolid, FireIcon as FireIconSolid } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import PageLayout from "@/app/components/PageLayout";
+import RoleLayout from "@/components/RoleLayout";
 import AnalyticsDashboard from "@/app/components/AnalyticsDashboard";
 import DemographicsChart from "@/app/components/university/DemographicsChart";
 import EventParticipationChart from "@/app/components/university/EventParticipationChart";
@@ -550,7 +550,8 @@ const universityComparisonData = {
 
 export default function UniversityDashboard() {
   return (
-    <div className="container mx-auto py-8 px-4">
+    <RoleLayout pageTitle="Панель управления AlmaU">
+      <div className="container mx-auto py-8 px-4">
       <h1 className="text-3xl font-bold mb-8 text-primary">Панель управления AlmaU</h1>
       
       {/* Карточка университета с основной информацией */}
@@ -1428,6 +1429,7 @@ export default function UniversityDashboard() {
           </Card>
         </div>
       </div>
-    </div>
+      </div>
+    </RoleLayout>
   );
-} 
+}
