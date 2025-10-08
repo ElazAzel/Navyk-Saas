@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CalendarIcon, UserIcon, ClockIcon, AcademicCapIcon, ChatBubbleLeftRightIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import RoleLayout from "@/components/RoleLayout";
 
 export default function MentorDashboard() {
   // Данные ментора
@@ -121,17 +122,18 @@ export default function MentorDashboard() {
   ];
 
   return (
-    <div className="container py-8">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Дашборд ментора</h1>
-          <p className="text-muted-foreground">
-            Управляйте сессиями и отслеживайте прогресс ваших студентов
-          </p>
+    <RoleLayout pageTitle="Дашборд ментора">
+      <div className="space-y-8">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
+          <div>
+            <h1 className="text-3xl font-bold tracking-tight">Здравствуйте, {mentor.name.split(" ")[0]}</h1>
+            <p className="text-muted-foreground">
+              Управляйте сессиями и отслеживайте прогресс ваших студентов
+            </p>
+          </div>
         </div>
-      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <Card className="md:col-span-1">
           <CardHeader>
             <div className="flex items-center gap-4">
@@ -328,6 +330,7 @@ export default function MentorDashboard() {
           </div>
         </TabsContent>
       </Tabs>
-    </div>
+      </div>
+    </RoleLayout>
   );
-} 
+}

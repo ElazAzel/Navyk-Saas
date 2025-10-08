@@ -6,10 +6,18 @@ export const ROUTES = {
 
   // Страницы для студентов
   STUDENT: {
+    DASHBOARD: '/students/dashboard',
     PROFILE: '/students/profile',
     ROADMAP: '/students/roadmap',
     COURSES: '/students/courses',
     JOBS: '/students/jobs',
+    EVENTS: '/students/events',
+    ACHIEVEMENTS: '/students/achievements',
+    ANALYTICS: '/students/analytics',
+    SKILLS: '/students/skills',
+    ACTIVITY: '/students/activity',
+    SETTINGS: '/students/settings',
+    RECOMMENDATIONS: '/students/recommendations',
   },
 
   // Страницы для работодателей
@@ -43,7 +51,7 @@ export const ROUTES = {
 
 // Типы пользователей и их домашние страницы
 export const USER_HOME_ROUTES = {
-  student: ROUTES.STUDENT.PROFILE,
+  student: ROUTES.STUDENT.DASHBOARD,
   employer: ROUTES.EMPLOYER.DASHBOARD,
   university: ROUTES.UNIVERSITY.DASHBOARD,
   mentor: ROUTES.MENTOR.DASHBOARD,
@@ -52,10 +60,18 @@ export const USER_HOME_ROUTES = {
 
 // Защищенные маршруты и необходимые роли
 export const PROTECTED_ROUTES = {
+  [ROUTES.STUDENT.DASHBOARD]: ['student'],
   [ROUTES.STUDENT.PROFILE]: ['student'],
   [ROUTES.STUDENT.ROADMAP]: ['student'],
   [ROUTES.STUDENT.COURSES]: ['student'],
   [ROUTES.STUDENT.JOBS]: ['student'],
+  [ROUTES.STUDENT.EVENTS]: ['student'],
+  [ROUTES.STUDENT.ACHIEVEMENTS]: ['student'],
+  [ROUTES.STUDENT.ANALYTICS]: ['student'],
+  [ROUTES.STUDENT.SKILLS]: ['student'],
+  [ROUTES.STUDENT.ACTIVITY]: ['student'],
+  [ROUTES.STUDENT.SETTINGS]: ['student'],
+  [ROUTES.STUDENT.RECOMMENDATIONS]: ['student'],
   
   [ROUTES.EMPLOYER.DASHBOARD]: ['employer'],
   [ROUTES.EMPLOYER.JOBS]: ['employer'],
