@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { motion, AnimatePresence } from "framer-motion";
-import PageLayout from "@/app/components/PageLayout";
+import RoleLayout from "@/components/RoleLayout";
 import AchievementCard, { Achievement } from "@/app/components/AchievementCard";
 import UserLevel from "@/app/components/UserLevel";
 import {
@@ -227,7 +227,7 @@ export default function StudentAchievements() {
   };
   
   return (
-    <PageLayout>
+    <RoleLayout pageTitle="Достижения и бонусы">
       <div className="mb-6">
         <h1 className="text-3xl font-bold mb-2">Достижения и бонусы</h1>
         <p className="text-muted-foreground">
@@ -519,6 +519,6 @@ export default function StudentAchievements() {
           </Card>
         </div>
       </div>
-    </PageLayout>
+    </RoleLayout>
   );
-} 
+}

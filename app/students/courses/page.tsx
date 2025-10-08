@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 import { motion } from "framer-motion";
-import PageLayout from "@/app/components/PageLayout";
+import RoleLayout from "@/components/RoleLayout";
 import CourseCard, { Course } from "@/app/components/CourseCard";
 import { 
   AcademicCapIcon, 
@@ -260,7 +260,7 @@ export default function StudentCourses() {
   ];
   
   return (
-    <PageLayout>
+    <RoleLayout pageTitle="Курсы">
       <div className="mb-6">
         <h1 className="text-3xl font-bold mb-2">Курсы</h1>
         <p className="text-muted-foreground">
@@ -523,6 +523,6 @@ export default function StudentCourses() {
           )}
         </TabsContent>
       </Tabs>
-    </PageLayout>
+    </RoleLayout>
   );
-} 
+}

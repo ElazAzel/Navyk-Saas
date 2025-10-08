@@ -18,6 +18,7 @@ import {
   ArrowUpIcon,
   ArrowDownIcon,
 } from "@heroicons/react/24/outline";
+import RoleLayout from "@/components/RoleLayout";
 import Link from "next/link";
 import { Label } from "@/components/ui/label"
 import BarChart from "@/components/BarChart";
@@ -282,28 +283,29 @@ export default function AdminDashboard() {
   ];
 
   return (
-    <div className="container py-8">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Панель администратора</h1>
-          <p className="text-muted-foreground">
-            Управление пользователями, контентом и системными настройками
-          </p>
-        </div>
-        <div className="flex gap-2 mt-4 md:mt-0">
-          <Button variant="outline">
-            <BellAlertIcon className="h-4 w-4 mr-2" />
-            Уведомления
-            <Badge variant="destructive" className="ml-2">{notifications.length}</Badge>
-          </Button>
-          <Button>
-            <PlusIcon className="h-4 w-4 mr-2" />
-            Добавить пользователя
-          </Button>
-        </div>
-      </div>
-
+    <RoleLayout pageTitle="Панель администратора">
       <div className="space-y-8">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
+          <div>
+            <h1 className="text-3xl font-bold tracking-tight">Центральная консоль NAVYK</h1>
+            <p className="text-muted-foreground">
+              Управление пользователями, контентом и системными настройками
+            </p>
+          </div>
+          <div className="flex gap-2 mt-4 md:mt-0">
+            <Button variant="outline">
+              <BellAlertIcon className="h-4 w-4 mr-2" />
+              Уведомления
+              <Badge variant="destructive" className="ml-2">{notifications.length}</Badge>
+            </Button>
+            <Button>
+              <PlusIcon className="h-4 w-4 mr-2" />
+              Добавить пользователя
+            </Button>
+          </div>
+        </div>
+
+        <div className="space-y-8">
         {/* Статистика */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {dashboardData.stats.map((stat, index) => {
@@ -612,6 +614,7 @@ export default function AdminDashboard() {
           </Card>
         </TabsContent>
       </Tabs>
-    </div>
+      </div>
+    </RoleLayout>
   );
 }

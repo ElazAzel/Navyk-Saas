@@ -26,7 +26,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { FireIcon as FireIconSolid, StarIcon as StarIconSolid } from "@heroicons/react/24/solid";
 import { motion } from "framer-motion";
-import PageLayout from "@/app/components/PageLayout";
+import RoleLayout from "@/components/RoleLayout";
 import Link from "next/link";
 
 export default function StudentProfile() {
@@ -130,7 +130,7 @@ export default function StudentProfile() {
   };
 
   return (
-    <PageLayout>
+    <RoleLayout pageTitle="Профиль">
       {/* Верхняя панель с профилем и эелементами геймификации */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-6">
         {/* Профиль и геймификация */}
@@ -677,6 +677,6 @@ export default function StudentProfile() {
           </Card>
         </div>
       </div>
-    </PageLayout>
+    </RoleLayout>
   );
 }

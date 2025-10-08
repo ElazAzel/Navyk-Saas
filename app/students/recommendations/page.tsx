@@ -11,7 +11,7 @@ import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { AdjustmentsHorizontalIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import RecommendationCard from "@/components/RecommendationCard";
-import PageLayout from "@/app/components/PageLayout";
+import RoleLayout from "@/components/RoleLayout";
 
 export default function StudentRecommendations() {
   // Данные рекомендаций
@@ -239,7 +239,7 @@ export default function StudentRecommendations() {
   };
 
   return (
-    <PageLayout>
+    <RoleLayout pageTitle="Рекомендации">
       <div className="container mx-auto">
         <div className="mb-8">
           <h1 className="text-3xl font-bold mb-2">Ваши рекомендации</h1>
@@ -525,6 +525,6 @@ export default function StudentRecommendations() {
           </div>
         </div>
       </div>
-    </PageLayout>
+    </RoleLayout>
   );
 } 

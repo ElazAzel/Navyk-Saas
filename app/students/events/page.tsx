@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { motion } from "framer-motion";
-import PageLayout from "@/app/components/PageLayout";
+import RoleLayout from "@/components/RoleLayout";
 import EventCard, { Event } from "@/app/components/EventCard";
 import { 
   CalendarIcon, 
@@ -242,7 +242,7 @@ export default function StudentEvents() {
   ];
   
   return (
-    <PageLayout>
+    <RoleLayout pageTitle="Мероприятия">
       <div className="mb-6">
         <h1 className="text-3xl font-bold mb-2">Мероприятия</h1>
         <p className="text-muted-foreground">
@@ -508,6 +508,6 @@ export default function StudentEvents() {
           )}
         </TabsContent>
       </Tabs>
-    </PageLayout>
+    </RoleLayout>
   );
-} 
+}
